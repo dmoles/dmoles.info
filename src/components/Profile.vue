@@ -33,6 +33,10 @@ const currentCourses = [
       <table>
         <tbody>
           <tr>
+            <th scope="row">Pronouns</th>
+            <td>they/them</td>
+          </tr>
+          <tr>
             <th scope="row">Student status</th>
             <td>Online, part-time</td>
           </tr>
