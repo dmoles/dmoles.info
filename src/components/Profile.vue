@@ -30,7 +30,7 @@ const currentCourses = [
     <section class="text">
       <h1>David Moles</h1>
 
-      <table>
+      <table class="outer">
         <tbody>
           <tr>
             <th scope="row">Pronouns</th>
@@ -152,34 +152,110 @@ const currentCourses = [
 <style lang="scss">
 @use '../colors';
 
-div.profile {
-  height: 100vh;
+@media only screen and (min-width: 896px) {
+  div.profile {
+    display: grid;
+    grid-template-columns: 384px minmax(0, 1fr);
 
-  display: grid;
-  grid-template-columns: 384px minmax(min-content, 1fr);
+    aside.photo {
+      grid-column: 1;
+      height: 100vh;
 
-  font-family: Arvo, 'serif';
-  color: black;
+      figure {
+        margin-top: auto;
+        margin-bottom: auto;
 
-  aside.photo {
-    grid-column: 1;
+        img.selfie {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
 
+    section.text {
+      grid-column: 2;
+      max-width: 768px;
+    }
+  }
+}
+
+@media only screen and (max-width: 896px) {
+  div.profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    aside.photo {
+      width: 100%;
+
+      figure {
+        margin-left: auto;
+        margin-right: auto;
+
+        img.selfie {
+          height: 384px;
+          width: auto;
+        }
+      }
+
+    }
+
+    section.text {
+
+      table {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0 !important; // TODO: move overrides to wide layout, remove !importants
+
+        tbody {
+          display: contents;
+
+          tr {
+            display: contents;
+
+            th {
+              text-align: left !important;
+              padding: 0 0 0.3rem !important;
+            }
+
+            > td {
+              margin-left: 0.6rem;
+            }
+          }
+        }
+
+        &.inner {
+          tr {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+
+            td {
+              padding-bottom: 0 !important;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+div.profile {
+  font-family: Arvo, 'serif';
+  color: black;
+  background: colors.$cafe-cream;
+
+  aside.photo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
 
     color: colors.$cafe-cream;
     background: colors.$oxford-blue;
 
     figure {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-
-      img.selfie {
-        width: 100%;
-        height: auto;
-      }
-
       figcaption {
         position: absolute;
         left: -9999px;
@@ -189,15 +265,15 @@ div.profile {
   }
 
   section.text {
-    grid-column: 2;
+    margin: auto;
     padding: 2rem;
+    box-sizing: border-box;
+    max-width: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-
-    background: colors.$cafe-cream;
 
     h1 {
       font-weight: 900;
@@ -237,20 +313,20 @@ div.profile {
     table {
       margin-top: 1rem;
       margin-bottom: 1rem;
+      max-width: 100%;
 
       tr {
         th {
           vertical-align: top;
           text-align: right;
           font-weight: bold;
-          white-space: nowrap;
           padding-right: 1rem;
           text-transform: lowercase;
         }
 
         td, th {
           font-size: 1rem;
-          padding-bottom: 0.6rem;
+          padding-bottom: 0.9rem;
           line-height: 1.2em;
         }
       }
