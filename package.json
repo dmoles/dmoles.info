@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "netlify-cli": "^11.5.1",
+    "sass": "^1.54.9",
     "vue": "^3.2.37"
   },
   "devDependencies": {
