@@ -44,7 +44,8 @@ const currentCourses = [
             <th scope="row">Academic interests</th>
             <td>
               Archives and preservation, academic librarianship, information ethics,
-              indigenous and marginalized knowledge
+              indigenous and marginalized knowledge, power and agency in GLAM and the
+              academy
             </td>
           </tr>
           <tr>
