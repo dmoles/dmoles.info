@@ -59,6 +59,10 @@ const currentCourses = [
             </td>
           </tr>
           <tr>
+            <th scope="row">Previous courses</th>
+            <td>(none)</td>
+          </tr>
+          <tr>
             <th scope="row">Work status</th>
             <td>
               Full time
