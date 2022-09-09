@@ -19,6 +19,7 @@ const currentCourses = [
 
 </script>
 
+<!-- TODO: Turn this *all* into data, cf. "current courses" -->
 <template>
   <div class="profile">
     <aside class="photo">
@@ -80,18 +81,12 @@ const currentCourses = [
               <table class="inner">
                 <tbody>
                   <tr>
-                    <th scope="row">email:</th>
-                    <td><a href="mailto:david.moles@rutgers.edu">david.moles@rutgers.edu</a></td>
-                  </tr>
-                  <tr>
                     <th scope="row">Twitter:</th>
                     <td><a href="https://twitter.com/chronodm">@chronodm</a></td>
                   </tr>
                   <tr>
-                    <th scope="row">My other website:</th>
-                    <td>
-                      <a href="https://dmoles.net">dmoles.net</a>
-                    </td>
+                    <th scope="row">email:</th>
+                    <td><a href="mailto:david.moles@rutgers.edu">david.moles@rutgers.edu</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -141,7 +136,7 @@ const currentCourses = [
         </p>
 
         <footer>
-          &nbsp;
+          My other website: <a href="https://dmoles.net">dmoles.net</a>
         </footer>
       </section>
 
@@ -159,12 +154,14 @@ const currentCourses = [
 
     aside.photo {
       grid-column: 1;
-      height: 100vh;
+      height: 100%;
 
       figure {
-        margin-top: auto;
-        margin-bottom: auto;
-
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
         img.selfie {
           width: 100%;
           height: auto;
@@ -205,7 +202,6 @@ const currentCourses = [
       table {
         display: flex;
         flex-direction: column;
-        margin-bottom: 0 !important; // TODO: move overrides to wide layout, remove !importants
 
         tbody {
           display: contents;
@@ -225,14 +221,17 @@ const currentCourses = [
         }
 
         &.inner {
-          tr {
-            display: flex;
-            flex-direction: row;
-            gap: 0;
+          display: grid;
+          grid-template-columns: min-content minmax(0, 1fr);
 
-            td {
-              padding-bottom: 0 !important;
-            }
+          th {
+            grid-column: 1;
+            padding-bottom: 0 !important;
+          }
+
+          td {
+            grid-column: 2;
+            padding-bottom: 0 !important;
           }
         }
       }
@@ -247,10 +246,6 @@ div.profile {
   background: colors.$cafe-cream;
 
   aside.photo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
 
     color: colors.$cafe-cream;
     background: colors.$oxford-blue;
@@ -312,7 +307,6 @@ div.profile {
 
     table {
       margin-top: 1rem;
-      margin-bottom: 1rem;
       max-width: 100%;
 
       tr {
@@ -326,7 +320,7 @@ div.profile {
 
         td, th {
           font-size: 1rem;
-          padding-bottom: 0.9rem;
+          padding-bottom: 1.2rem;
           line-height: 1.2em;
         }
       }
@@ -338,11 +332,14 @@ div.profile {
       th {
         font-weight: normal;
         padding-right: 0.25rem;
-        text-align: left;
+        // text-align: left;
       }
 
       tbody {
         tr {
+          td, th {
+            padding-bottom: 0.3rem;
+          }
           &:last-of-type {
             td, th {
               padding-bottom: 0;
@@ -357,9 +354,15 @@ div.profile {
 
       footer {
         width: 50%;
+        margin-top: 2.4rem;
         margin-left: auto;
         margin-right: auto;
-        border-bottom: 1px dotted colors.$jasper-blue;
+        padding-top: 0.6rem;
+        border-top: 1px dotted colors.$jasper-blue;
+        text-align: center;
+        font-style: italic;
+        font-size: 0.9rem;
+        font-family: Montserrat, 'sans-serif';
       }
     }
   }

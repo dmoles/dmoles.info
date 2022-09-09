@@ -13,7 +13,7 @@ const courseUrl = computed(() => `https://comminfo.rutgers.edu/academics/courses
 
 <template>
   <tr>
-    <th scope="row">
+    <th scope="row" class="course-id">
       <a :href="courseUrl">17:610:{{ id }}</a>
     </th>
     <td>
@@ -21,3 +21,9 @@ const courseUrl = computed(() => `https://comminfo.rutgers.edu/academics/courses
     </td>
   </tr>
 </template>
+
+<style lang="scss">
+th.course-id {
+  font-variant-numeric: lining-nums;
+}
+</style>
