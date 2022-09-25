@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import selfie from '../assets/images/dm-selfie-2022-08-03-1024x1024.png'
+import selfie from '../../assets/images/dm-selfie-2022-08-03-1024x1024.png'
 import CourseRow from './CourseRow.vue'
 
 const currentCourses = [
@@ -145,7 +145,7 @@ const currentCourses = [
 </template>
 
 <style lang="scss">
-@use '../colors';
+@use '../../colors';
 
 @media only screen and (min-width: 896px) {
   div.profile {
@@ -161,7 +161,7 @@ const currentCourses = [
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
+
         img.selfie {
           width: 100%;
           height: auto;
