@@ -31,12 +31,22 @@ const rootComponent: Component = Profile
 type Routes = { [k: string]: Component }
 const routes: Routes = {
   '/': rootComponent,
-  '/projects/583/veracruz': Veracruz
+  '/projects/583/veracruz/': Veracruz
 }
 
 const currentView = computed(() => {
-  const path = location.value.pathname
-  return routes[path] || NotFound
+  const rawPath: string = location.value.pathname
+  var paths: Array<string> = [rawPath]
+  if (!rawPath.endsWith('/')) {
+    paths.push(`${rawPath}/`)
+  }
+  for (const path of paths) {
+    const route = routes[path]
+    if (route) {
+      return route
+    }
+  }
+  return NotFound
 })
 
 </script>
