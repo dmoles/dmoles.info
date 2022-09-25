@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use '../colors';
 
 div.not-found {
@@ -19,29 +19,30 @@ div.not-found {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-}
 
-header {
-  margin-top: auto;
-  margin-bottom: auto;
-}
+  header {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 
-h1 {
-  font-weight: 900;
-  font-size: 3rem;
-  line-height: 1.2em;
-  font-family: Montserrat, 'sans-serif';
-  color: colors.$penguin;
-}
+  h1 {
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 1.2em;
+    font-family: Montserrat, 'sans-serif';
+    color: colors.$penguin;
+  }
 
-a.button {
-  display: block;
-  font-family: Montserrat, 'sans-serif';
+  a.button {
+    display: block;
+    font-family: Montserrat, 'sans-serif';
 
-  color: colors.$cafe-cream;
+    color: colors.$cafe-cream;
 
-  &:visited, &:active {
-    color: colors.$biarritz;
+    &:visited, &:active {
+      color: colors.$biarritz;
+    }
   }
 }
+
 </style>
