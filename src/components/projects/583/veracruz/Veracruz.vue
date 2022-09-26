@@ -1,25 +1,16 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
 import type {Ref} from "vue"
+import {onMounted, onUnmounted, ref} from "vue";
 
 import mapSrc from './assets/images/united-fruit-company-map.jpg'
 import iconSrc from './assets/images/archive.svg'
-
-const mapSize = [1564, 1604]
+import butler129Src from './assets/images/butler-129-covering-letter.jpg'
+import butler133Src from './assets/images/butler-133-butler-to-navy.jpg'
+import butler91Src from './assets/images/butler-91-orders.jpg'
+import marinesSrc from './assets/images/marines-marching-to-station.jpg'
+import ussDolphinSrc from './assets/images/uss-dolphin-1915.jpg'
 
 const mapRef: Ref<HTMLElement | null> = ref(null)
-
-const initMap = () => {
-  const mapVal = mapRef.value;
-  if (mapVal == null) {
-    return
-  }
-  const map: HTMLElement = mapVal
-
-  // TODO: read docRefs & put them in something we can look up
-}
-
-onMounted(initMap)
 
 // Locations
 
@@ -36,14 +27,12 @@ const locations: Locations = {
 
 // Documents
 
-import butler129Src from './assets/images/butler-129-covering-letter.jpg'
-import butler133Src from './assets/images/butler-133-butler-to-navy.jpg'
-import butler91Src from './assets/images/butler-91-orders.jpg'
-import marinesSrc from './assets/images/marines-marching-to-station.jpg'
-import ussDolphinSrc from './assets/images/uss-dolphin-1915.jpg'
-
 type Document = {
-  id: string, src: string, location: [number, number]
+  id: string,
+  src: string,
+  location: [number, number],
+  iconImg?: HTMLElement,
+  docImg?: HTMLElement
 }
 const documents: Array<Document> = [
   {id: 'butler129', src: butler129Src, location: locations.washington},
@@ -53,17 +42,106 @@ const documents: Array<Document> = [
   {id: 'ussDolphin', src: ussDolphinSrc, location: locations.tampico}
 ]
 
-const docRefs: Ref<Array<HTMLElement | null>> = ref([])
+//     width: 1564px;
+// height: 1604px;
+
+const mw = 1564
+const mh = 1604
+
+const docItemsRef: Ref<Array<HTMLElement>> = ref([])
+
+onMounted(init)
+onUnmounted(() => resizeObserver.disconnect())
+
+function init() {
+  const mapVal = mapRef.value;
+  if (mapVal == null) {
+    return
+  }
+
+  const map: HTMLElement = mapVal
+  const mapWidth = map.offsetWidth
+  const mapHeight = map.offsetHeight
+
+  const xRatio = mapWidth / mw
+  const yRatio = mapHeight / mh
+  console.log('xRatio, yRatio = %o', xRatio, yRatio)
+
+  let docItems = docItemsRef.value;
+
+  for (const doc of documents) {
+    for (const docItem of docItems) {
+      if (doc.id == docItem.id) {
+        for (const child of docItem.children) {
+          if (child.tagName == 'IMG') {
+            const imgElement = <HTMLElement>child
+            const cssClass = imgElement.getAttribute('class')
+            if (cssClass == 'icon') {
+              doc.iconImg = imgElement
+            } else if (cssClass == 'document') {
+              doc.docImg = imgElement
+            }
+          }
+        }
+        break
+      }
+    }
+  }
+
+  setIconLocations()
+
+  resizeObserver.observe(map)
+}
+
+function setIconLocations() {
+  const mapVal = mapRef.value;
+  if (mapVal == null) {
+    return
+  }
+
+  const map: HTMLElement = mapVal
+  const mapWidth = map.offsetWidth
+  const mapHeight = map.offsetHeight
+
+  const xRatio = mapWidth / mw
+  const yRatio = mapHeight / mh
+  console.log('xRatio, yRatio = %o', xRatio, yRatio)
+
+  for (const doc of documents) {
+    if (doc.iconImg) {
+      const style = doc.iconImg.style
+
+      const iconWidth = doc.iconImg.offsetWidth
+      const iconHeight = doc.iconImg.offsetHeight
+
+      let top: number, left: number
+      [left, top] = doc.location
+      const topPx = `${top * xRatio - (iconWidth / 2)}px`;
+      const leftPx = `${left * yRatio + (iconHeight / 2)}px`;
+      style.top = topPx
+      style.left = leftPx
+      console.log('set position of image %o to %o, %o', doc.id, leftPx, topPx)
+    }
+  }
+}
+
+const resizeObserver = new ResizeObserver((entries) => {
+  for (const entry of entries) {
+    if (entry.contentBoxSize) {
+      setIconLocations()
+    }
+  }
+})
 
 </script>
 
 <template>
   <article class="veracruz">
-    <img ref="mapRef" :src="mapSrc"/>
+    <img class="map" ref="mapRef" :src="mapSrc"/>
     <ul class="documents">
-      <li v-for="document in documents" ref="docRefs">
-        <img :id="`icon-${document.id}`" :src="iconSrc" class="icon"/>
-        <img :id="`doc-${document.id}`" :src="document.src" class="document"/>
+      <li v-for="document in documents" ref="docItemsRef" :id="document.id" :key="document.id">
+        <img :src="iconSrc" class="icon"/>
+        <img :src="document.src" class="document"/>
       </li>
     </ul>
   </article>
@@ -71,16 +149,33 @@ const docRefs: Ref<Array<HTMLElement | null>> = ref([])
 
 <style lang="scss">
 article.veracruz {
+  position: relative;
+
+  img.map {
+    width: 100%;
+  }
+
   ul.documents {
     display: contents;
+
     li {
       display: contents;
+
       img.icon {
         height: 1rem;
         width: 1rem;
+
+        position: absolute;
+        top: -999px;
+        left: -999px;
       }
+
       img.document {
         height: 100px;
+
+        position: absolute;
+        top: -999px;
+        left: -999px;
       }
     }
   }
