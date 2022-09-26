@@ -9,6 +9,7 @@ import butler133Src from './assets/images/butler-133-butler-to-navy.jpg'
 import butler91Src from './assets/images/butler-91-orders.jpg'
 import marinesSrc from './assets/images/marines-marching-to-station.jpg'
 import ussDolphinSrc from './assets/images/uss-dolphin-1915.jpg'
+import locZevonSrc from './assets/images/loc-zevon.jpg'
 
 const mapRef: Ref<HTMLElement | null> = ref(null)
 
@@ -39,7 +40,8 @@ const documents: Array<Document> = [
   {id: 'butler133', src: butler133Src, location: locations.portAuPrince},
   {id: 'butler91', src: butler91Src, location: locations.colon},
   {id: 'marines', src: marinesSrc, location: locations.veracruz},
-  {id: 'ussDolphin', src: ussDolphinSrc, location: locations.tampico}
+  {id: 'ussDolphin', src: ussDolphinSrc, location: locations.tampico},
+  {id: 'locZevon', src: locZevonSrc, location: locations.losAngeles}
 ]
 
 //     width: 1564px;
@@ -58,14 +60,6 @@ function init() {
   if (mapVal == null) {
     return
   }
-
-  const map: HTMLElement = mapVal
-  const mapWidth = map.offsetWidth
-  const mapHeight = map.offsetHeight
-
-  const xRatio = mapWidth / mw
-  const yRatio = mapHeight / mh
-  console.log('xRatio, yRatio = %o', xRatio, yRatio)
 
   let docItems = docItemsRef.value;
 
@@ -105,22 +99,34 @@ function setIconLocations() {
 
   const xRatio = mapWidth / mw
   const yRatio = mapHeight / mh
-  console.log('xRatio, yRatio = %o', xRatio, yRatio)
 
   for (const doc of documents) {
-    if (doc.iconImg) {
-      const style = doc.iconImg.style
+    let top: number, left: number
+    [left, top] = doc.location
 
-      const iconWidth = doc.iconImg.offsetWidth
-      const iconHeight = doc.iconImg.offsetHeight
+    let scaledTop = top * xRatio;
+    let scaledLeft = left * yRatio;
 
-      let top: number, left: number
-      [left, top] = doc.location
-      const topPx = `${top * xRatio - (iconWidth / 2)}px`;
-      const leftPx = `${left * yRatio + (iconHeight / 2)}px`;
-      style.top = topPx
-      style.left = leftPx
-      console.log('set position of image %o to %o, %o', doc.id, leftPx, topPx)
+    let iconImg = doc.iconImg;
+    if (iconImg) {
+      const iconWidth = iconImg.offsetWidth
+      const iconHeight = iconImg.offsetHeight
+
+      const iconTopPx = `${scaledTop - (iconHeight / 2)}px`;
+      const iconLeftPx = `${scaledLeft + (iconWidth / 2)}px`;
+
+      const iconStyle = iconImg.style
+      iconStyle.top = iconTopPx
+      iconStyle.left = iconLeftPx
+
+      let docImg = doc.docImg;
+      if (docImg) {
+        const docTopPx = `${scaledTop}px`
+        const docLeftPx = `${scaledLeft + 2 * iconWidth}px`
+        const docStyle = docImg.style
+        docStyle.top = docTopPx;
+        docStyle.left = docLeftPx;
+      }
     }
   }
 }
@@ -148,11 +154,16 @@ const resizeObserver = new ResizeObserver((entries) => {
 </template>
 
 <style lang="scss">
+@use '../../../../_colors';
+
 article.veracruz {
   position: relative;
+  background-color: black;
 
   img.map {
+    position: relative;
     width: 100%;
+    z-index: 0;
   }
 
   ul.documents {
@@ -161,21 +172,29 @@ article.veracruz {
     li {
       display: contents;
 
+      // TODO: make icons/images clickable (use checkbox)
       img.icon {
         height: 1rem;
         width: 1rem;
 
         position: absolute;
-        top: -999px;
-        left: -999px;
+        z-index: 1;
+
+        filter: invert(1);
+        transition: filter 0.25s, box-shadow 0.25s;
+        box-shadow: 0 0 2px 2px white;
+
+        &:hover + img.document {
+          z-index: 2;
+        }
       }
 
       img.document {
-        height: 100px;
+        width: 15%;
 
         position: absolute;
-        top: -999px;
-        left: -999px;
+        z-index: -2;
+        border: 1px solid black;
       }
     }
   }
