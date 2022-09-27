@@ -84,7 +84,7 @@ function init() {
 
   setIconLocations()
 
-  resizeObserver.observe(map)
+  resizeObserver.observe(mapVal)
 }
 
 function setIconLocations() {
