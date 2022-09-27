@@ -9,9 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/markdown-it": "*",
+    "markdown-it": "^13.0.1",
     "netlify-cli": "^11.5.1",
     "sass": "^1.54.9",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue3-markdown-it": "^1.0.10"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.1.0",
