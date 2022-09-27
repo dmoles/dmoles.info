@@ -99,6 +99,8 @@ div.vc-document {
     grid-column: 1;
     grid-row: 1;
 
+    z-index: 1;
+
     display: block;
     width: min-content;
     height: min-content;
@@ -118,6 +120,8 @@ div.vc-document {
 
   div.vc-document-details {
     position: relative;
+
+    z-index: 2;
 
     grid-row: 1;
     grid-column: 2;

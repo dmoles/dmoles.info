@@ -49,7 +49,7 @@ export const documents: Array<ArchiveDoc> = [
     {
         id: 'locZevon', src: locZevonSrc, location: locations.losAngeles,
         date: new Date('1978-01-08T00:00:00-08:00'),
-        description: 'In 1977 Warren Zevon and Jorge Calderón recorded the song “Veracruz”, a ballad dramatizing the US occupation. It was released on the album _Excitable Boy_, which also included “Roland the Headless Thompson Gunner” and “Lawyers, Guns, and Money”, satirical takes on Cold War adventurism in Africa and Latin America, respectively.',
+        description: 'In 1977 Warren Zevon and Jorge Calderón recorded the song “Veracruz”, a ballad dramatizing the US occupation. It was released on the album _Excitable Boy_, which also included the songs “Roland the Headless Thompson Gunner” and “Lawyers, Guns, and Money”—satirical takes on Cold War adventurism in Africa and Latin America, respectively.',
         srcUrl: 'https://lccn.loc.gov/99568272',
         citation: 'Library of Congress. Catalog record for Zevon, Warren, _Excitable Boy._ LC Catalog, 1978.'
     },
