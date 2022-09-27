@@ -26,6 +26,7 @@ function rescale() {
   xScale.value = mapWidth / mw
   yScale.value = mapHeight / mh
 
+  // TODO: Figure out timing issue that intermittently breaks scaling
   console.log('xScale: %o / %o = %o', mapWidth, mw, xScale.value)
   console.log('yScale: %o / %o = %o', mapHeight, mh, yScale.value)
 }
@@ -43,6 +44,7 @@ onMounted(() => {
   if (mapVal == null) {
     return
   }
+  rescale()
   resizeObserver.observe(mapVal)
 })
 

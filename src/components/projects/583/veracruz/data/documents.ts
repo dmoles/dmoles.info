@@ -8,6 +8,7 @@ import butler91Src from "../assets/images/butler-91-orders.jpg";
 import marinesSrc from "../assets/images/marines-marching-to-station.jpg";
 import ussDolphinSrc from "../assets/images/uss-dolphin-1915.jpg";
 import locZevonSrc from "../assets/images/loc-zevon.jpg";
+import wilsonTelegramSrc from "../assets/images/wilson-telgram.jpg";
 
 export const documents: Array<ArchiveDoc> = [
     {
@@ -50,6 +51,13 @@ export const documents: Array<ArchiveDoc> = [
         date: new Date('1978-01-08T00:00:00-08:00'),
         description: 'In 1977 Warren Zevon and Jorge Calderón recorded the song “Veracruz”, a ballad dramatizing the US occupation. It was released on the album _Excitable Boy_, which also included “Roland the Headless Thompson Gunner” and “Lawyers, Guns, and Money”, satirical takes on Cold War adventurism in Africa and Latin America, respectively.',
         srcUrl: 'https://lccn.loc.gov/99568272',
-        citation: 'Library of Congress. Catalog record for Zevon, Warren, Excitable Boy. LC Catalog, 1978.'
+        citation: 'Library of Congress. Catalog record for Zevon, Warren, _Excitable Boy._ LC Catalog, 1978.'
+    },
+    {
+        id: 'wilsonTelegram', src: wilsonTelegramSrc, location: locations.mexicoCity,
+        date: new Date('1913-02-18T00:00:00-08:00'),
+        description: 'In February 1913, US Ambassador to Mexico Harold Lane Wilson met with rival Mexican generals Victoriano Huerta and Porfirio Díaz in the US Embassy, a meeting which was widely seen as indicating tacit US support for their coup against elected president Francisco Madero.',
+        srcUrl: 'https://history.state.gov/historicaldocuments/frus1913/d836',
+        citation: 'Henry Lane Wilson to Secretary of State, 18 Feb. 1913. _Papers Relating to the Foreign Relations of the United States, With the Address of the President to Congress December 2, 1913,_ edited by Joseph V. Fuller and Tyler Dennett, Washington: United States Government Printing Office, 1920, Document 836.'
     }
 ]
