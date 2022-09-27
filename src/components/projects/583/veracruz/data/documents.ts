@@ -1,4 +1,4 @@
-import { locations } from './locations'
+import {locations} from './locations'
 
 import type {ArchiveDoc} from '../types/ArchiveDoc'
 
@@ -55,9 +55,18 @@ export const documents: Array<ArchiveDoc> = [
     },
     {
         id: 'wilsonTelegram', src: wilsonTelegramSrc, location: locations.mexicoCity,
-        date: new Date('1913-02-18T00:00:00-08:00'),
+        date: new Date('1913-02-18T00:00:00-06:00'),
         description: 'In February 1913, US Ambassador to Mexico Harold Lane Wilson met with rival Mexican generals Victoriano Huerta and Porfirio Díaz in the US Embassy, a meeting which was widely seen as indicating tacit US support for their coup against elected president Francisco Madero.',
         srcUrl: 'https://history.state.gov/historicaldocuments/frus1913/d836',
         citation: 'Henry Lane Wilson to Secretary of State, 18 Feb. 1913. _Papers Relating to the Foreign Relations of the United States, With the Address of the President to Congress December 2, 1913,_ edited by Joseph V. Fuller and Tyler Dennett, Washington: United States Government Printing Office, 1920, Document 836.'
     }
-]
+].sort(compareDocuments)
+
+function compareDocuments(doc1: ArchiveDoc, doc2: ArchiveDoc) {
+    const order = doc1.date.valueOf() - doc2.date.valueOf()
+    if (order != 0) {
+        return order
+    }
+
+    return doc1.id.localeCompare(doc2.id)
+}
