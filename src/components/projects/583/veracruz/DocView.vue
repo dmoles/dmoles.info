@@ -20,13 +20,13 @@ const y = computed(() => props.doc.location[1])
 
 const topPx = computed(() => {
   const yActual = y.value * props.yScale
-  console.log('topPx: %o * %o => %o', y.value, props.yScale, yActual)
+  // console.log('topPx: %o * %o => %o', y.value, props.yScale, yActual)
   return `${yActual}px`
 })
 
 const leftPx = computed(() => {
   const xActual = x.value * props.xScale
-  console.log('leftPx: %o * %o => %o', x.value, props.xScale, xActual)
+  // console.log('leftPx: %o * %o => %o', x.value, props.xScale, xActual)
   return `${xActual}px`
 })
 
