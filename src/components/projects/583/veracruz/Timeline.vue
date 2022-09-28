@@ -32,7 +32,7 @@ const tlHeight = computed(() => {
 
 <template>
   <div class="vc-timeline">
-    <h3>Timeline</h3>
+    <h2>Timeline</h2>
     <div class="vc-timeline-entries">
     <TimelineEntry
       v-for="doc in documents"
@@ -61,9 +61,9 @@ div.vc-timeline {
   height: 100%;
   box-sizing: border-box;
 
-  h3 {
+  h2 {
     text-transform: uppercase;
-    font-family: Arvo, serif;
+    font-family: Chivo, sans-serif;
     font-size: 1.2rem;
     font-weight: bold;
   }
@@ -89,7 +89,7 @@ div.vc-timeline {
     //    appearance: none;
     //    background: none;
     //    border: none;
-    //    font-family: Arvo, serif;
+    //    font-family: EB Garamond, serif;
     //    font-size: 0.8rem;
     //    line-height: 1.2em;
     //    white-space: nowrap;

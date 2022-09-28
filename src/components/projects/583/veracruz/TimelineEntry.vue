@@ -74,8 +74,8 @@ div.vc-tl-entry {
     margin-left: -0.25rem;
 
     white-space: nowrap;
-    font-family: Arvo, serif;
-    font-size: 0.9rem;
+    font-family: Chivo, sans-serif;
+    font-size: 1rem;
     line-height: 1.2em;
 
     input[type=checkbox] {

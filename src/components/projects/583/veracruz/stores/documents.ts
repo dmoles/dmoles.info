@@ -32,7 +32,7 @@ export const useDocumentStore = defineStore('document', () => {
 
     const shortDesc = (doc: ArchiveDoc) => computed(() => {
         const formattedDate = formatInTimeZone(doc.date, 'UTC', 'd MMM yyyy')
-        return `${doc.location.name}, ${formattedDate}`
+        return `${doc.location.name}, ${formattedDate}`
     })
 
     const nextDocAfter = (doc: ArchiveDoc) => computed(() => {

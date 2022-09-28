@@ -67,9 +67,12 @@ function selectPrev() {
     <div class="vc-document-details">
       <img class="vc-document-img" :src="doc.src" alt="doc.id"/>
       <input :id="`details-${inputId}`" type="checkbox" v-model="visible">
-      <label class="vc-document-close" :for="`details-${inputId}`">
-        <img class="vc-icon" :src="closeIcon" alt="document"/>
-      </label>
+      <div class="vc-document-header">
+        <h3>{{ shortDesc(doc).value }}</h3>
+        <label class="vc-document-close" :for="`details-${inputId}`">
+          <img class="vc-icon" :src="closeIcon" alt="document"/>
+        </label>
+      </div>
       <div class="vc-document-details-text">
         <Markdown :source="doc.description" class="vc-document-details-description"/>
         <nav class="vc-prevnext">
@@ -77,9 +80,9 @@ function selectPrev() {
           <button class="vc-next" v-if="nextDoc" @click="selectNext">{{ shortDesc(nextDoc).value }} »</button>
         </nav>
         <section class="vc-citation">
-          <h3>Source</h3>
+          <h4>Source</h4>
           <Markdown :source="doc.citation"/>
-          <p><a target="_blank" :href="doc.srcUrl">{{ doc.srcUrl }}</a></p>
+          <p class="source-url"><a target="_blank" :href="doc.srcUrl">{{ doc.srcUrl }}</a></p>
           <p class="view-orig"><a target="_blank" :href="doc.viewUrl">View original ↗️</a></p>
         </section>
       </div>
@@ -89,8 +92,8 @@ function selectPrev() {
 
 <style lang="scss">
 div.vc-document {
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;0,900;1,300;1,500;1,700;1,900&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,500;0,700;0,900;1,300;1,500;1,700;1,900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=EB Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
   position: absolute;
   display: grid;
@@ -170,12 +173,25 @@ div.vc-document {
       max-height: 300px;
     }
 
-    label.vc-document-close {
+    div.vc-document-header {
       grid-row: 1;
       grid-column: 2;
-      margin-left: auto;
-      padding: 0.2rem;
+
+      display: flex;
+
+      h3 {
+        font-family: Chivo, sans-serif;
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+
+      label.vc-document-close {
+        margin-left: auto;
+        padding: 0.3rem;
+      }
     }
+
 
     div.vc-document-details-text {
       grid-row: 2;
@@ -183,8 +199,8 @@ div.vc-document {
 
       max-width: 300px;
       padding: 0.5rem;
-      font-family: Arvo, serif;
-      font-size: 0.9rem;
+      font-family: EB Garamond, serif;
+      font-size: 1rem;
       line-height: 1.2em;
 
       display: flex;
@@ -196,17 +212,25 @@ div.vc-document {
         margin-top: auto;
         font-size: 0.6rem;
         line-height: 1.2em;
-        font-family: Montserrat, sans-serif;
+        font-family: Chivo, sans-serif;
 
-        h3 {
-          font-family: Montserrat, sans-serif;
+        h4 {
+          font-family: Chivo, sans-serif;
           font-weight: bold;
-          font-size: 1em;
+          font-size: 0.7rem;
+          line-height: 1.2em;
           margin-bottom: 0.2em;
         }
 
         p {
           margin-top: 0.4em;
+
+          &.view-orig {
+            font-size: 0.8rem;
+            line-height: 1.2em;
+            text-align: right;
+            margin-top: 0.4rem;
+          }
         }
       }
     }
@@ -229,8 +253,8 @@ div.vc-document {
       appearance: none;
       background: white;
       border: none;
-      font-size: 0.6rem;
-      font-family: Arvo, serif;
+      font-size: 0.8rem;
+      font-family: Chivo, sans-serif;
       white-space: nowrap;
       padding: 0;
       margin: 0;
