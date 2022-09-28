@@ -10,9 +10,36 @@ import ussDolphinSrc from "../assets/images/uss-dolphin-1915.jpg";
 import locZevonSrc from "../assets/images/loc-zevon.jpg";
 import wilsonTelegramSrc from "../assets/images/wilson-telgram.jpg";
 import {defineStore, storeToRefs} from "pinia";
-import {computed} from "vue";
+import {computed, ref} from "vue";
+
+type DocSelection = { [k: string]: boolean }
 
 export const useDocumentStore = defineStore('document', () => {
+
+    const selectedLocations = ref(<DocSelection>{})
+
+    const docSelected = (doc: ArchiveDoc) => computed({
+        get() {
+            return selectedLocations.value[doc.id]
+        },
+        set(v: boolean) {
+            selectedLocations.value[doc.id] = v
+        }
+    })
+
+    const nextDocAfter = (doc: ArchiveDoc) => computed(() => {
+        const docs = documents.value
+        const index = docs.indexOf(doc)
+        const nextIndex = index + 1;
+        return (nextIndex < docs.length) ? docs[nextIndex] : null
+    })
+
+    const prevDocBefore = (doc: ArchiveDoc) => computed(() => {
+        const docs = documents.value
+        const index = docs.indexOf(doc)
+        const prevIndex = index - 1;
+        return (prevIndex >= 0) ? docs[prevIndex] : null
+    })
 
     const documents = computed(() => {
         const {veracruz, mexicoCity, portAuPrince, washington, colon, losAngeles, tampico} = storeToRefs(useLocationStore())
@@ -29,7 +56,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'butler133', src: butler133Src, location: portAuPrince.value,
-                date: new Date('1916-02-04T00:00:00-04:00'),
+                date: new Date('1916-02-23T00:00:00-04:00'),
                 description: 'Butler, then stationed at Port-au-Prince, Haiti, wrote to the Secretary of the Navy, attempting to decline the Medal of Honor, writing: “the undersigned feels that no service rendered by him at Vera Cruz, deserves such recognition.”',
                 srcUrl: 'https://catalog.archives.gov/id/57279637',
                 citation: 'Maj. Smedley D. Butler to Secretary of the Navy, 23 Feb. 1916. Official Military Personnel File for Smedley D. Butler, image 133 of 2814; Official Military Personnel Files, 1905-1998; Records of the US Marine Corps, 1775-, Record Group 127. National Archives and Records Administration.'
@@ -74,7 +101,7 @@ export const useDocumentStore = defineStore('document', () => {
         return docs
     })
 
-    return {documents}
+    return {documents, docSelected, nextDocAfter, prevDocBefore}
 })
 
 

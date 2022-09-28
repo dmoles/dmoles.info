@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import {computed, ref} from "vue";
+import {computed} from "vue";
 import Markdown from 'vue3-markdown-it';
 
 import archiveIcon from './assets/images/archive.svg'
 import closeIcon from './assets/images/times-circle.svg'
 
 import type {ArchiveDoc} from './types/ArchiveDoc'
+import {useDocumentStore} from "./stores/documents";
 
 const props = defineProps<{
   doc: ArchiveDoc,
@@ -15,8 +16,8 @@ const props = defineProps<{
 
 const inputId = computed(() => props.doc.id)
 
-const x = computed(() => props.doc.location[0])
-const y = computed(() => props.doc.location[1])
+const x = computed(() => props.doc.location.x)
+const y = computed(() => props.doc.location.y)
 
 const topPx = computed(() => {
   const yActual = y.value * props.yScale
@@ -32,7 +33,36 @@ const leftPx = computed(() => {
 
 const style = computed(() => `top: ${topPx.value}; left: ${leftPx.value};`)
 
-const visible = ref(false)
+const {docSelected, nextDocAfter, prevDocBefore} = useDocumentStore()
+
+const visible = docSelected(props.doc)
+const nextDoc = nextDocAfter(props.doc)
+
+function selectNext() {
+  visible.value = false
+  let nd = nextDoc.value;
+  if (nd) {
+    const nextSelected = docSelected(nd);
+    nextSelected.value = true
+  }
+}
+
+const prevDoc = prevDocBefore(props.doc)
+
+function selectPrev() {
+  visible.value = false
+  let pd = prevDoc.value;
+  if (pd) {
+    const prevSelected = docSelected(pd);
+    prevSelected.value = true
+  }
+}
+
+
+function linkTextFor(nd: ArchiveDoc) {
+  const nextLoc = nd.location
+  return `${nextLoc.name}, ${nd.date.toLocaleDateString()}`
+}
 
 </script>
 
@@ -48,6 +78,10 @@ const visible = ref(false)
       </label>
       <div class="vc-document-details-text">
         <Markdown :source="doc.description" class="vc-document-details-description"/>
+        <nav class="vc-prevnext">
+          <button class="vc-prev" v-if="prevDoc" @click="selectPrev">« {{ linkTextFor(prevDoc) }}</button>
+          <button class="vc-next" v-if="nextDoc" @click="selectNext">{{ linkTextFor(nextDoc) }} »</button>
+        </nav>
         <section class="vc-citation">
           <h3>Source</h3>
           <Markdown :source="doc.citation"/>
@@ -160,9 +194,10 @@ div.vc-document {
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
 
       section.vc-citation {
+        justify-self: flex-end;
         margin-top: 1rem;
         font-size: 0.6rem;
         line-height: 1.2em;
@@ -185,6 +220,39 @@ div.vc-document {
       font-style: italic;
     }
 
+  }
+
+  nav.vc-prevnext {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+
+    button {
+      display: block;
+      appearance: none;
+      background: white;
+      border: none;
+      font-size: 0.6rem;
+      font-family: Arvo, serif;
+      white-space: nowrap;
+      padding: 0;
+      margin: 0;
+      text-decoration: underline;
+
+      &.vc-prev {
+        grid-column: 1;
+        justify-self: start;
+        padding-right: 0.25rem;
+      }
+
+      &.vc-next {
+        grid-column: 2;
+        justify-self: end;
+        padding-left: 0.25rem;
+      }
+    }
   }
 }
 </style>
