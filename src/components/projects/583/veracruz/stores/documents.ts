@@ -2,13 +2,13 @@ import {useLocationStore} from './locations'
 
 import type {ArchiveDoc} from '../types/ArchiveDoc'
 
-import butler129Src from "../assets/images/butler-129-covering-letter.jpg";
-import butler133Src from "../assets/images/butler-133-butler-to-navy.jpg";
-import butler91Src from "../assets/images/butler-91-orders.jpg";
-import marinesSrc from "../assets/images/marines-marching-to-station.jpg";
-import ussDolphinSrc from "../assets/images/uss-dolphin-1915.jpg";
-import locZevonSrc from "../assets/images/loc-zevon.jpg";
-import wilsonTelegramSrc from "../assets/images/wilson-telgram.jpg";
+import butler129Src from '../assets/images/butler-129-covering-letter.jpg';
+import butler133Src from '../assets/images/butler-133-butler-to-navy.jpg';
+import butler91Src from '../assets/images/butler-91-orders.jpg';
+import marinesSrc from '../assets/images/marines-marching-to-station.jpg';
+import ussDolphinSrc from '../assets/images/uss-dolphin-1915.jpg';
+import locZevonSrc from '../assets/images/loc-zevon.jpg';
+import wilsonTelegramSrc from '../assets/images/wilson-telgram.jpg';
 import {defineStore, storeToRefs} from "pinia";
 import {computed, ref} from "vue";
 
