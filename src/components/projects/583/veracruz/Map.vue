@@ -52,11 +52,14 @@ onUnmounted(resizeObserver.disconnect)
 
 // ------------------------------------------------------------
 // Documents
+
 import DocView from "./DocView.vue";
 import {storeToRefs} from "pinia";
 import {useDocumentStore} from "./stores/documents";
 
 const {documents} = storeToRefs(useDocumentStore())
+
+import Timeline from "./Timeline.vue"
 
 </script>
 
@@ -69,6 +72,7 @@ const {documents} = storeToRefs(useDocumentStore())
       :x-scale="xScale"
       :y-scale="yScale"
     />
+    <Timeline/>
   </div>
 </template>
 
@@ -80,6 +84,11 @@ div.vc-map {
   img.vc-map-image {
     width: 100%;
     z-index: 0;
+  }
+
+  .vc-timeline {
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 </style>

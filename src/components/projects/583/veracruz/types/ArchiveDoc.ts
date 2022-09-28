@@ -7,7 +7,8 @@ type ArchiveDoc = {
     date: Date,
     description: string,
     srcUrl: string,
-    citation: string // TODO: something smarter
+    citation: string,
+    viewUrl: string
 }
 
 export type {ArchiveDoc}
