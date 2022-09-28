@@ -6,7 +6,6 @@ import archiveIcon from './assets/images/archive.svg'
 import closeIcon from './assets/images/times-circle.svg'
 
 import type {ArchiveDoc} from './types/ArchiveDoc'
-import {useDocumentStore} from "./stores/documents";
 
 const props = defineProps<{
   doc: ArchiveDoc,
@@ -14,7 +13,7 @@ const props = defineProps<{
   yScale: number
 }>()
 
-const inputId = computed(() => props.doc.id)
+const inputId = computed(() => `docView-${props.doc.id}`)
 
 const x = computed(() => props.doc.location.x)
 const y = computed(() => props.doc.location.y)
@@ -33,6 +32,7 @@ const leftPx = computed(() => {
 
 const style = computed(() => `top: ${topPx.value}; left: ${leftPx.value};`)
 
+import {useDocumentStore} from "./stores/documents";
 const {docSelected, shortDesc, nextDocAfter, prevDocBefore} = useDocumentStore()
 
 const visible = docSelected(props.doc)

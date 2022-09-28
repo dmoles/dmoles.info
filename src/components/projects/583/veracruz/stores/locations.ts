@@ -13,7 +13,5 @@ export const useLocationStore = defineStore('location', () => {
     const losAngeles: Ref<Location> = ref(<Location>{ x: 47, y: 487, name: 'Los Angeles' })
     const tampico: Ref<Location> = ref(<Location>{ x: 153, y: 859, name: 'Tampico' })
 
-    console.log('exporting washington = %o', washington)
-
     return {veracruz, mexicoCity, portAuPrince, washington, colon, losAngeles, tampico}
 })

@@ -49,8 +49,6 @@ export const useDocumentStore = defineStore('document', () => {
     const documents = computed(() => {
         const {veracruz, mexicoCity, portAuPrince, washington, colon, losAngeles, tampico} = storeToRefs(useLocationStore())
 
-        console.log('washington: %o', washington)
-
         const docs: Array<ArchiveDoc> = [
             {
                 id: 'butler129', src: butler129Src, location: washington.value,
@@ -113,7 +111,25 @@ export const useDocumentStore = defineStore('document', () => {
         return docs
     })
 
-    return {documents, docSelected, shortDesc, nextDocAfter, prevDocBefore}
+    const tsMin = computed(() => {
+        const docs = documents.value;
+        if (!docs) {
+            return 0
+        }
+        const firstDoc = docs[0]
+        return firstDoc.date.valueOf()
+    })
+
+    const tsMax = computed(() => {
+        const docs = documents.value;
+        if (!docs) {
+            return 0
+        }
+        const lastDoc = docs[docs.length - 1]
+        return lastDoc.date.valueOf()
+    })
+
+    return {documents, tsMin, tsMax, docSelected, shortDesc, nextDocAfter, prevDocBefore}
 })
 
 

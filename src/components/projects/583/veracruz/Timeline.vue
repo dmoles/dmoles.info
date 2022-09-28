@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import {storeToRefs} from "pinia";
 import {useDocumentStore} from "./stores/documents";
-import {ArchiveDoc} from "./types/ArchiveDoc";
+import type {ArchiveDoc} from "./types/ArchiveDoc";
+import TimelineEntry from "./TimelineEntry.vue"
 
 const {documents} = storeToRefs(useDocumentStore())
-const {docSelected, shortDesc} = useDocumentStore()
+const {docSelected, shortDesc, tsMin, tsMax} = useDocumentStore()
 
 function toggleSelection(doc: ArchiveDoc) {
   console.log('toggling %o', doc.id)
@@ -14,25 +15,51 @@ function toggleSelection(doc: ArchiveDoc) {
 
   selected.value = !wasSelected
 }
+
+import { useGeometryStore } from './stores/geometry'
+import {computed} from "vue";
+const geom = useGeometryStore()
+
+const { mapHeight } = storeToRefs(geom)
+
+const tlOffset = 48 // TODO: something more accurate
+
+const tlHeight = computed(() => {
+  return mapHeight.value - (2 * tlOffset)
+})
+
 </script>
 
 <template>
   <div class="vc-timeline">
     <h3>Timeline</h3>
-    <ul>
-      <li v-for="doc in documents">
-        <button @click="toggleSelection(doc)">{{ shortDesc(doc).value }}</button>
-      </li>
-    </ul>
+    <div class="vc-timeline-entries">
+    <TimelineEntry
+      v-for="doc in documents"
+      :doc="doc"
+      :ts-min="tsMin"
+      :ts-max="tsMax"
+      :tlHeight="tlHeight"
+      :tlOffset="tlOffset"
+    />
+    </div>
+<!--    <ul>-->
+<!--      <li v-for="doc in documents">-->
+<!--        <button @click="toggleSelection(doc)">{{ shortDesc(doc).value }}</button>-->
+<!--      </li>-->
+<!--    </ul>-->
   </div>
 </template>
 
 <style lang="scss">
 div.vc-timeline {
   background: #d4be90;
-  border: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 3px solid black;
   padding: 1rem;
   display: block;
+  height: 100%;
+  box-sizing: border-box;
 
   h3 {
     text-transform: uppercase;
@@ -41,30 +68,36 @@ div.vc-timeline {
     font-weight: bold;
   }
 
-  ul {
+  .vc-timeline-entries {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
 
-    li {
-      display: block;
-      margin: 1rem;
-      padding: 0;
+    margin-top: 1rem;
+    border-left: 4px solid black;
+    margin-left: 1rem;
 
-      button {
-        display: block;
-        appearance: none;
-        background: none;
-        border: none;
-        font-family: Arvo, serif;
-        font-size: 0.8rem;
-        line-height: 1.2em;
-        white-space: nowrap;
-        padding: 0;
-        margin: 0;
-        text-decoration: underline;
-      }
-    }
+    height: 50%;
+    box-sizing: border-box;
+    //li {
+    //  display: block;
+    //  //margin: 1rem;
+    //  padding: 0;
+    //
+    //  button {
+    //    display: block;
+    //    appearance: none;
+    //    background: none;
+    //    border: none;
+    //    font-family: Arvo, serif;
+    //    font-size: 0.8rem;
+    //    line-height: 1.2em;
+    //    white-space: nowrap;
+    //    padding: 0;
+    //    margin: 0;
+    //    text-decoration: underline;
+    //  }
+    //}
   }
 
 }

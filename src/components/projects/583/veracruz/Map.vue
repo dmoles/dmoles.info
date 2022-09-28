@@ -6,12 +6,13 @@ import mapSrc from './assets/images/united-fruit-company-map.jpg'
 // ------------------------------------------------------------
 // Map scale management
 
-const mapRef: Ref<HTMLElement | null> = ref(null)
-const xScale = ref(1.0)
-const yScale = ref(1.0)
+import { useGeometryStore } from './stores/geometry'
+const geom = useGeometryStore()
 
-const mw = 1564
-const mh = 1604
+const mapRef: Ref<HTMLElement | null> = ref(null)
+
+const { mapWidth, mapHeight, xScale, yScale } = storeToRefs(geom)
+
 
 function rescale() {
   const mapVal = mapRef.value;
@@ -20,15 +21,17 @@ function rescale() {
   }
 
   const map: HTMLElement = mapVal
-  const mapWidth = map.offsetWidth
-  const mapHeight = map.offsetHeight
+  const w = map.offsetWidth;
+  const h = map.offsetHeight;
 
-  xScale.value = mapWidth / mw
-  yScale.value = mapHeight / mh
+  console.log('setting mapWidth => %o', w)
+  console.log('setting mapHeight => %o', h)
 
-  // TODO: Figure out timing issue that intermittently breaks scaling
-  console.log('xScale: %o / %o = %o', mapWidth, mw, xScale.value)
-  console.log('yScale: %o / %o = %o', mapHeight, mh, yScale.value)
+  mapWidth.value = w
+  mapHeight.value = h
+
+  console.log('…mapWidth = %o', mapWidth.value)
+  console.log('…mapHeight = %o', mapHeight.value)
 }
 
 const resizeObserver = new ResizeObserver((entries) => {
@@ -59,7 +62,6 @@ import {useDocumentStore} from "./stores/documents";
 
 const {documents} = storeToRefs(useDocumentStore())
 
-import Timeline from "./Timeline.vue"
 
 </script>
 
@@ -72,7 +74,6 @@ import Timeline from "./Timeline.vue"
       :x-scale="xScale"
       :y-scale="yScale"
     />
-    <Timeline/>
   </div>
 </template>
 
