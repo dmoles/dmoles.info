@@ -52,8 +52,11 @@ onUnmounted(resizeObserver.disconnect)
 
 // ------------------------------------------------------------
 // Documents
-import {documents} from './data/documents'
 import DocView from "./DocView.vue";
+import {storeToRefs} from "pinia";
+import {useDocumentStore} from "./stores/documents";
+
+const {documents} = storeToRefs(useDocumentStore())
 
 </script>
 

@@ -12,6 +12,7 @@
     "@types/markdown-it": "*",
     "markdown-it": "^13.0.1",
     "netlify-cli": "^11.5.1",
+    "pinia": "^2.0.22",
     "sass": "^1.54.9",
     "vue": "^3.2.37",
     "vue3-markdown-it": "^1.0.10"

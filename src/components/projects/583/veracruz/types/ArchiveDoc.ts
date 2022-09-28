@@ -1,7 +1,9 @@
+import type {Location} from './location'
+
 type ArchiveDoc = {
     id: string,
     src: string,
-    location: [number, number],
+    location: Location,
     iconImg?: HTMLElement, // TODO: remove this
     docImg?: HTMLElement, // TODO: remove this
     date: Date,
@@ -10,4 +12,4 @@ type ArchiveDoc = {
     citation: string // TODO: something smarter
 }
 
-export type { ArchiveDoc }
+export type {ArchiveDoc}
