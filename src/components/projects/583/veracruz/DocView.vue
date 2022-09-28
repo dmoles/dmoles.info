@@ -33,7 +33,7 @@ const leftPx = computed(() => {
 
 const style = computed(() => `top: ${topPx.value}; left: ${leftPx.value};`)
 
-const {docSelected, nextDocAfter, prevDocBefore} = useDocumentStore()
+const {docSelected, shortDesc, nextDocAfter, prevDocBefore} = useDocumentStore()
 
 const visible = docSelected(props.doc)
 const nextDoc = nextDocAfter(props.doc)
@@ -58,12 +58,6 @@ function selectPrev() {
   }
 }
 
-
-function linkTextFor(nd: ArchiveDoc) {
-  const nextLoc = nd.location
-  return `${nextLoc.name}, ${nd.date.toLocaleDateString()}`
-}
-
 </script>
 
 <template>
@@ -79,13 +73,14 @@ function linkTextFor(nd: ArchiveDoc) {
       <div class="vc-document-details-text">
         <Markdown :source="doc.description" class="vc-document-details-description"/>
         <nav class="vc-prevnext">
-          <button class="vc-prev" v-if="prevDoc" @click="selectPrev">« {{ linkTextFor(prevDoc) }}</button>
-          <button class="vc-next" v-if="nextDoc" @click="selectNext">{{ linkTextFor(nextDoc) }} »</button>
+          <button class="vc-prev" v-if="prevDoc" @click="selectPrev">« {{ shortDesc(prevDoc).value }}</button>
+          <button class="vc-next" v-if="nextDoc" @click="selectNext">{{ shortDesc(nextDoc).value }} »</button>
         </nav>
         <section class="vc-citation">
           <h3>Source</h3>
           <Markdown :source="doc.citation"/>
-          <p><a :href="doc.srcUrl">{{ doc.srcUrl }}</a></p>
+          <p><a target="_blank" :href="doc.srcUrl">{{ doc.srcUrl }}</a></p>
+          <p class="view-orig"><a target="_blank" :href="doc.viewUrl">View original ↗️</a></p>
         </section>
       </div>
     </div>
@@ -198,7 +193,7 @@ div.vc-document {
 
       section.vc-citation {
         justify-self: flex-end;
-        margin-top: 1rem;
+        margin-top: auto;
         font-size: 0.6rem;
         line-height: 1.2em;
         font-family: Montserrat, sans-serif;
