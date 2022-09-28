@@ -12,6 +12,8 @@ import wilsonTelegramSrc from '../assets/images/wilson-telgram.jpg';
 import {defineStore, storeToRefs} from "pinia";
 import {computed, ref} from "vue";
 
+import formatInTimeZone from 'date-fns-tz/formatInTimeZone'
+
 type DocSelection = { [k: string]: boolean }
 
 export const useDocumentStore = defineStore('document', () => {
@@ -29,7 +31,8 @@ export const useDocumentStore = defineStore('document', () => {
     })
 
     const shortDesc = (doc: ArchiveDoc) => computed(() => {
-        return `${doc.location.name}, ${doc.date.toLocaleDateString()}`
+        const formattedDate = formatInTimeZone(doc.date, 'UTC', 'd MMM yyyy')
+        return `${doc.location.name}, ${formattedDate}`
     })
 
     const nextDocAfter = (doc: ArchiveDoc) => computed(() => {
@@ -52,7 +55,7 @@ export const useDocumentStore = defineStore('document', () => {
         const docs: Array<ArchiveDoc> = [
             {
                 id: 'butler129', src: butler129Src, location: washington.value,
-                date: new Date('1916-02-29T00:00:00-04:00'),
+                date: new Date('1916-02-04'),
                 description: 'In 1916 Smedley Butler was awarded the Congressional Medal of Honor for his actions at Veracruz on 22 April 1914.',
                 srcUrl: 'https://catalog.archives.gov/id/57279637',
                 viewUrl: 'https://catalog.archives.gov/OpaAPI/media/57279637/content/st-louis/military/rg-127/299715/300_Butler_Smedley_01_Page_129.jpg',
@@ -60,7 +63,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'butler133', src: butler133Src, location: portAuPrince.value,
-                date: new Date('1916-02-23T00:00:00-04:00'),
+                date: new Date('1916-02-23'),
                 description: 'Butler, then stationed at Port-au-Prince, Haiti, wrote to the Secretary of the Navy, attempting to decline the Medal of Honor, writing: “the undersigned feels that no service rendered by him at Vera Cruz, deserves such recognition.”',
                 srcUrl: 'https://catalog.archives.gov/id/57279637',
                 viewUrl: 'https://catalog.archives.gov/OpaAPI/media/57279637/content/st-louis/military/rg-127/299715/300_Butler_Smedley_01_Page_133.jpg',
@@ -68,7 +71,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'butler91', src: butler91Src, location: colon.value,
-                date: new Date('1914-01-08T00:00:00-04:00'),
+                date: new Date('1914-01-08'),
                 description: 'In January 1914 Maj. Smedley Butler and his battalion of Marines received orders to leave Panama and report to Rear Admiral Fletcher at Veracruz.',
                 srcUrl: 'https://catalog.archives.gov/id/57279637',
                 viewUrl: 'https://catalog.archives.gov/OpaAPI/media/57279637/content/st-louis/military/rg-127/299715/300_Butler_Smedley_01_Page_091.jpg',
@@ -76,7 +79,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'marines', src: marinesSrc, location: veracruz.value,
-                date: new Date('1914-05-16T00:00:00-04:00'),
+                date: new Date('1914-05-16'),
                 description: 'US Marines and Army troops continued to occupy the city until late November 1914.',
                 srcUrl: 'https://www.loc.gov/item/2010651723/',
                 viewUrl: 'https://www.loc.gov/item/2010651723/',
@@ -84,7 +87,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'ussDolphin', src: ussDolphinSrc, location: tampico.value,
-                date: new Date('1914-04-09T00:00:00-04:00'),
+                date: new Date('1914-04-09'),
                 description: 'In April 1914, sailors from the gunboat USS _Dolphin_ were detained by Mexican soldiers. Though the sailors were quickly released and the officer who had ordered their detention arrested, escalating US demands for symbolic reparations and their subsequent refusal by the Huerta government led to President Wilson asking the US Congress for permission to occupy Veracruz and remove Huerta from power.',
                 srcUrl: 'https://www.loc.gov/item/2004673121/',
                 viewUrl: 'https://www.loc.gov/item/2004673121/',
@@ -92,7 +95,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'locZevon', src: locZevonSrc, location: losAngeles.value,
-                date: new Date('1978-01-08T00:00:00-08:00'),
+                date: new Date('1978-01-08'),
                 description: 'In 1977 Warren Zevon and Jorge Calderón recorded the song “Veracruz”, a ballad dramatizing the US occupation. It was released on the album _Excitable Boy_, which also included the songs “Roland the Headless Thompson Gunner” and “Lawyers, Guns, and Money”—satirical takes on Cold War adventurism in Africa and Latin America, respectively.',
                 srcUrl: 'https://lccn.loc.gov/99568272',
                 viewUrl: 'https://lccn.loc.gov/99568272',
@@ -100,7 +103,7 @@ export const useDocumentStore = defineStore('document', () => {
             },
             {
                 id: 'wilsonTelegram', src: wilsonTelegramSrc, location: mexicoCity.value,
-                date: new Date('1913-02-18T00:00:00-06:00'),
+                date: new Date('1913-02-18'),
                 description: 'In February 1913, US Ambassador to Mexico Harold Lane Wilson met with rival Mexican generals Victoriano Huerta and Porfirio Díaz in the US Embassy, a meeting which was widely seen as indicating tacit US support for their coup against elected president Francisco Madero.',
                 srcUrl: 'https://history.state.gov/historicaldocuments/frus1913/d836',
                 viewUrl: 'https://history.state.gov/historicaldocuments/frus1913/d836',
