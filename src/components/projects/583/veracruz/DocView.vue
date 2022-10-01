@@ -33,6 +33,7 @@ const leftPx = computed(() => {
 const style = computed(() => `top: ${topPx.value}; left: ${leftPx.value};`)
 
 import {useDocumentStore} from "./stores/documents";
+
 const {docSelected, shortDesc, nextDocAfter, prevDocBefore} = useDocumentStore()
 
 const visible = docSelected(props.doc)
@@ -65,7 +66,6 @@ function selectPrev() {
     <input :id="inputId" type="checkbox" v-model="visible">
     <label class="vc-document-icon" :for="inputId"><img class="vc-icon" :src="archiveIcon" alt="document"/></label>
     <div class="vc-document-details">
-      <img class="vc-document-img" :src="doc.src" alt="doc.id"/>
       <input :id="`details-${inputId}`" type="checkbox" v-model="visible">
       <div class="vc-document-header">
         <h3>{{ shortDesc(doc).value }}</h3>
@@ -73,6 +73,7 @@ function selectPrev() {
           <img class="vc-icon" :src="closeIcon" alt="document"/>
         </label>
       </div>
+      <img class="vc-document-img" :src="doc.src" alt="doc.id"/>
       <div class="vc-document-details-text">
         <Markdown :source="doc.description" class="vc-document-details-description"/>
         <nav class="vc-prevnext">
@@ -160,13 +161,32 @@ div.vc-document {
 
     background-color: white;
     box-shadow: 0 0 3px 1px black;
-    display: grid;
-    grid-template-columns: min-content minmax(0, 1fr);
-    grid-template-rows: min-content minmax(0, 1fr);
+
+    @media only screen and (min-width: 700px) {
+      display: grid;
+      grid-template-columns: min-content minmax(0, 1fr);
+      grid-template-rows: min-content minmax(0, 1fr);
+
+      img.vc-document-img {
+        grid-row: 1 / 3;
+        grid-column: 1;
+      }
+      div.vc-document-header {
+        grid-row: 1;
+        grid-column: 2;
+      }
+      div.vc-document-details-text {
+        grid-row: 2;
+        grid-column: 2;
+      }
+    }
+
+    @media only screen and (max-width: 700px) {
+      display: flex;
+      flex-direction: column;
+    }
 
     img.vc-document-img {
-      grid-row: 1 / 3;
-      grid-column: 1;
 
       display: block;
       max-width: 300px;
@@ -174,9 +194,6 @@ div.vc-document {
     }
 
     div.vc-document-header {
-      grid-row: 1;
-      grid-column: 2;
-
       display: flex;
 
       h3 {
@@ -194,9 +211,6 @@ div.vc-document {
 
 
     div.vc-document-details-text {
-      grid-row: 2;
-      grid-column: 2;
-
       max-width: 300px;
       padding: 0.5rem;
       font-family: EB Garamond, serif;

@@ -1,20 +1,10 @@
 <script setup lang="ts">
 import {storeToRefs} from "pinia";
 import {useDocumentStore} from "./stores/documents";
-import type {ArchiveDoc} from "./types/ArchiveDoc";
 import TimelineEntry from "./TimelineEntry.vue"
 
 const {documents} = storeToRefs(useDocumentStore())
-const {docSelected, shortDesc, tsMin, tsMax} = useDocumentStore()
-
-function toggleSelection(doc: ArchiveDoc) {
-  console.log('toggling %o', doc.id)
-  const selected = docSelected(doc)
-  const wasSelected = selected.value;
-  console.log('%o => %o', wasSelected, !wasSelected)
-
-  selected.value = !wasSelected
-}
+const {tsMin, tsMax} = useDocumentStore()
 
 import { useGeometryStore } from './stores/geometry'
 import {computed} from "vue";
@@ -43,11 +33,6 @@ const tlHeight = computed(() => {
       :tlOffset="tlOffset"
     />
     </div>
-<!--    <ul>-->
-<!--      <li v-for="doc in documents">-->
-<!--        <button @click="toggleSelection(doc)">{{ shortDesc(doc).value }}</button>-->
-<!--      </li>-->
-<!--    </ul>-->
   </div>
 </template>
 

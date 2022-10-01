@@ -19,6 +19,21 @@ article.veracruz {
   width: 100%;
 
   display: grid;
-  grid-template-columns: min-content minmax(0, 1fr);
+
+  @media only screen and (min-width: 700px) {
+    grid-template-columns: min-content minmax(0, 1fr);
+  }
+
+  @media only screen and (max-width: 700px) {
+    grid-template-rows: min-content minmax(0, 1fr);
+
+    .vc-map {
+      grid-row: 1;
+    }
+
+    .vc-timeline {
+      grid-row: 2;
+    }
+  }
 }
 </style>

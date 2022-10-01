@@ -31,24 +31,6 @@ const flexBasis = computed(() => {
   return `${(100 * scaleFactor)}%`
 })
 
-// const topPx = computed(() => {
-//   const tsRange = props.tsMax - props.tsMin
-//   const ts = props.doc.date.valueOf();
-//   const tsDiff = ts - props.tsMin;
-//
-//   let top
-//   if (tsDiff == 0) {
-//     top = 0
-//   } else {
-//     const logTsRange = scale(tsRange)
-//     const logTsDiff = scale(tsDiff)
-//     const scaleFactor = logTsDiff / logTsRange
-//     top = (scaleFactor * props.tlHeight)
-//   }
-//   const topActual = props.tlOffset + top
-//   return `${topActual}px`
-// })
-
 const entryStyle = computed(() => {
   return `flex-basis: ${flexBasis.value};`;
 })
