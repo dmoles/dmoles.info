@@ -81,8 +81,8 @@ const currentCourses = [
               <table class="inner">
                 <tbody>
                   <tr>
-                    <th scope="row">Twitter:</th>
-                    <td><a href="https://twitter.com/chronodm">@chronodm</a></td>
+                    <th scope="row">Mastodon:</th>
+                    <td><a href="https://mastodon.social/@chronodm">mastodon.social/@chronodm</a></td>
                   </tr>
                   <tr>
                     <th scope="row">email:</th>
