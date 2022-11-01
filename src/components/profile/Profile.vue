@@ -1,22 +1,11 @@
 <script setup lang="ts">
+import {storeToRefs} from "pinia";
+
 import selfie from '../../assets/images/dm-selfie-2022-08-03-1024x1024.png'
-import CourseRow from './CourseRow.vue'
+import {useCoursesStore} from "./stores/courses";
+import Courses from './Courses.vue'
 
-const currentCourses = [
-  {
-    id: 501,
-    name: 'Introduction to Library and Information Professions'
-  },
-  {
-    id: 580,
-    name: 'Knowledge & Society'
-  },
-  {
-    id: 583,
-    name: 'Foundations of Preservation and Archives'
-  }
-]
-
+const { current: currentCourses, past: pastCourses } = storeToRefs(useCoursesStore())
 </script>
 
 <!-- TODO: Turn this *all* into data, cf. "current courses" -->
@@ -51,17 +40,11 @@ const currentCourses = [
           </tr>
           <tr>
             <th scope="row">Current courses</th>
-            <td>
-              <table class="inner">
-                <tbody>
-                  <CourseRow v-for="{ id, name } in currentCourses" :id="id" :name="name"/>
-                </tbody>
-              </table>
-            </td>
+            <td><Courses :courses="currentCourses"/></td>
           </tr>
           <tr>
             <th scope="row">Previous courses</th>
-            <td>(none)</td>
+            <td><Courses :courses="pastCourses"/></td>
           </tr>
           <tr>
             <th scope="row">Work status</th>
@@ -273,7 +256,7 @@ div.profile {
     h1 {
       font-weight: 900;
       font-size: 3rem;
-      line-height: 1.2em;
+      line-height: 1.2rem;
       text-transform: uppercase;
       font-family: Montserrat, 'sans-serif';
     }
@@ -282,14 +265,14 @@ div.profile {
       font-weight: 900;
       text-transform: uppercase;
       font-size: 1rem;
-      line-height: 1.2em;
+      line-height: 1.2rem;
       font-family: Montserrat, 'sans-serif';
       margin-bottom: 0.9rem;
     }
 
     p {
       font-size: 1rem;
-      line-height: 1.2em;
+      line-height: 1.2rem;
       font-family: Arvo, 'serif';
       margin-bottom: 0.9rem;
     }
@@ -321,7 +304,7 @@ div.profile {
         td, th {
           font-size: 1rem;
           padding-bottom: 1.2rem;
-          line-height: 1.2em;
+          line-height: 1.2rem;
         }
       }
     }
