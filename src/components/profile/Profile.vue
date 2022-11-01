@@ -121,7 +121,7 @@ const currentCourses = [
         <p>
           I have a BA in language studies (Japanese emphasis) from UC
           Santa Cruz and an MSc in economic and social history from
-          Oxford University, and I’m looking forward to getting to
+          Oxford University, and I’m enjoying getting to
           spend some time thinking about things like contested
           historical narratives and the social construction of
           knowledge after many years of decontextualized tech work.
@@ -130,8 +130,8 @@ const currentCourses = [
         <p>
           I have two small children (ages 5 and 8) and I <a
           href="https://dmoles.net/">sometimes write science
-          fiction</a>, although not so much since the small children
-          came along—and probably even less till I’ve completed the MI
+          fiction</a>. Although not so much since the small children
+          came along, and probably even less till I’ve completed the MI
           program.
         </p>
 
