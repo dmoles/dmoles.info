@@ -6,6 +6,12 @@ import {useCoursesStore} from "./stores/courses";
 import Courses from './Courses.vue'
 
 const { current: currentCourses, past: pastCourses } = storeToRefs(useCoursesStore())
+
+import {useOrganizationsStore} from "./stores/organizations";
+import Organizations from './Organizations.vue'
+
+const { organizations } = storeToRefs(useOrganizationsStore())
+
 </script>
 
 <!-- TODO: Turn this *all* into data, cf. "current courses" -->
@@ -47,16 +53,16 @@ const { current: currentCourses, past: pastCourses } = storeToRefs(useCoursesSto
             <td><Courses :courses="pastCourses"/></td>
           </tr>
           <tr>
-            <th scope="row">Work status</th>
-            <td>
-              Full time
-            </td>
+            <th scope="row">Student organizations</th>
+            <td><Organizations :organizations="organizations"/></td>
           </tr>
           <tr>
             <th scope="row">Advisor</th>
-            <td>
-              <a href="https://comminfo.rutgers.edu/dalbello-marija">Marija Dalbello</a>
-            </td>
+            <td><a href="https://comminfo.rutgers.edu/dalbello-marija">Marija Dalbello</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Work status</th>
+            <td>Full time</td>
           </tr>
           <tr>
             <th scope="row">Contact</th>
@@ -256,7 +262,7 @@ div.profile {
     h1 {
       font-weight: 900;
       font-size: 3rem;
-      line-height: 1.2rem;
+      line-height: 1.2em;
       text-transform: uppercase;
       font-family: Montserrat, 'sans-serif';
     }
@@ -265,14 +271,14 @@ div.profile {
       font-weight: 900;
       text-transform: uppercase;
       font-size: 1rem;
-      line-height: 1.2rem;
+      line-height: 1.2em;
       font-family: Montserrat, 'sans-serif';
       margin-bottom: 0.9rem;
     }
 
     p {
       font-size: 1rem;
-      line-height: 1.2rem;
+      line-height: 1.2em;
       font-family: Arvo, 'serif';
       margin-bottom: 0.9rem;
     }
@@ -304,7 +310,7 @@ div.profile {
         td, th {
           font-size: 1rem;
           padding-bottom: 1.2rem;
-          line-height: 1.2rem;
+          line-height: 1.2em;
         }
       }
     }

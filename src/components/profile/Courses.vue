@@ -7,7 +7,6 @@ const props = defineProps<{
 }>()
 
 const hasCourses = computed(() => Array.isArray(props.courses) && props.courses.length > 0)
-
 </script>
 
 <template>
