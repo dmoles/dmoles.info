@@ -1,15 +1,26 @@
 import {Project} from "./Project";
 
-type Course = {
-    id: number,
-    name: string,
-    projects?: Array<Project>
+const COURSE_URL_BASE = `https://comminfo.rutgers.edu/academics/courses`;
+const PROGRAM_ID = 32;
+
+class Course {
+    id: number;
+    name: string;
+    projects: Array<Project>;
+
+    constructor(id: number, name: string, ...projects: Array<Project>) {
+        this.id = id;
+        this.name = name;
+        this.projects = projects;
+    }
+
+    get url(): string {
+        return `${COURSE_URL_BASE}?courses=${this.id}&program=${PROGRAM_ID}`
+    }
+
+    toString(): string {
+        return `${this.id} ${this.name}`
+    }
 }
 
-export type {Course}
-
-const courseUrlBase = `https://comminfo.rutgers.edu/academics/courses`;
-function courseUrlFor(course: Course): string {
-    return `${courseUrlBase}?courses=${course.id}&program=32`
-}
-export { courseUrlFor }
+export {COURSE_URL_BASE, PROGRAM_ID, Course}

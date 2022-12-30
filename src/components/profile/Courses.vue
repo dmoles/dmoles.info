@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Course, courseUrlFor} from "./types/Course";
+import {Course} from "./types/Course";
 import {computed} from "vue";
 
 const props = defineProps<{
@@ -12,9 +12,9 @@ const hasCourses = computed(() => Array.isArray(props.courses) && props.courses.
 <template>
 <dl class="courses">
   <template v-if="hasCourses" v-for="course in courses">
-    <dt><a :href="courseUrlFor(course)">17:610:{{ course.id }}</a></dt>
+    <dt><a :href="course.url">17:610:{{ course.id }}</a></dt>
     <dd>
-      <a :href="courseUrlFor(course)">{{ course.name }}</a>
+      <a :href="course.url">{{ course.name }}</a>
       <figure v-if="course.projects">
         <figcaption>projects</figcaption>
         <ul>
