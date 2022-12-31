@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import {storeToRefs} from "pinia";
 
-import selfie from '../../assets/images/dm-selfie-2022-08-03-1024x1024.png'
-import {useCoursesStore} from "./stores/courses";
-import Courses from './Courses.vue'
-
-const { current: currentCourses, past: pastCourses } = storeToRefs(useCoursesStore())
-
 import {useOrganizationsStore} from "./stores/organizations";
+import {useTermsStore} from "./stores/terms";
+import {useCoursesStore} from "./stores/courses";
+
+import Courses from './Courses.vue'
 import Organizations from './Organizations.vue'
 
-const { organizations } = storeToRefs(useOrganizationsStore())
+import selfie from '../../assets/images/dm-selfie-2022-08-03-1024x1024.png'
+
+const {currentCourses, pastCourses} = storeToRefs(useCoursesStore())
+const {currentTerm} = storeToRefs(useTermsStore())
+const {organizations} = storeToRefs(useOrganizationsStore())
 
 </script>
 
@@ -45,16 +47,22 @@ const { organizations } = storeToRefs(useOrganizationsStore())
             </td>
           </tr>
           <tr>
-            <th scope="row">Current courses</th>
-            <td><Courses :courses="currentCourses"/></td>
+            <th scope="row">Current courses ({{ currentTerm }})</th>
+            <td>
+              <Courses :courses="currentCourses"/>
+            </td>
           </tr>
           <tr>
             <th scope="row">Previous courses</th>
-            <td><Courses :courses="pastCourses"/></td>
+            <td>
+              <Courses :courses="pastCourses"/>
+            </td>
           </tr>
           <tr>
             <th scope="row">Student organizations</th>
-            <td><Organizations :organizations="organizations"/></td>
+            <td>
+              <Organizations :organizations="organizations"/>
+            </td>
           </tr>
           <tr>
             <th scope="row">Advisor</th>
@@ -71,7 +79,7 @@ const { organizations } = storeToRefs(useOrganizationsStore())
                 <tbody>
                   <tr>
                     <th scope="row">Mastodon:</th>
-                    <td><a href="https://mastodon.social/@chronodm">mastodon.social/@chronodm</a></td>
+                    <td><a href="https://glammr.us/@chronodm">glammr.us/@chronodm</a></td>
                   </tr>
                   <tr>
                     <th scope="row">email:</th>
@@ -329,6 +337,7 @@ div.profile {
           td, th {
             padding-bottom: 0.3rem;
           }
+
           &:last-of-type {
             td, th {
               padding-bottom: 0;

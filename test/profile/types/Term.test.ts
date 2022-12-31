@@ -6,7 +6,7 @@ describe(Term.name, () => {
     let term: Term
 
     beforeEach(() => {
-        term = new Term(2001, 'Fall')
+        term = new Term(2022, 'Fall')
     })
 
     describe('toString()', () => {
@@ -26,15 +26,15 @@ describe(Term.name, () => {
     describe('comparisons', () => {
         describe('<>', () => {
             it('compares by id', () => {
-                const t1 = new Term(2001, 'Fall')
-                const t2 = new Term(2002, 'Fall')
+                const t1 = new Term(2022, 'Fall')
+                const t2 = new Term(2023, 'Fall')
                 expect(t1 < t2).toEqual(true)
                 expect(t2 > t1).toEqual(true)
             })
 
             it('compares by name', () => {
-                const t1 = new Term(2001, 'Spring')
-                const t2 = new Term(2001, 'Fall')
+                const t1 = new Term(2022, 'Spring')
+                const t2 = new Term(2022, 'Fall')
                 expect(t1 < t2).toEqual(true)
                 expect(t2 > t1).toEqual(true)
             })
@@ -42,8 +42,8 @@ describe(Term.name, () => {
 
         describe('compareFn', () => {
             it('sorts an array', () => {
-                const t1 = new Term(2001, 'Spring')
-                const t2 = new Term(2001, 'Fall')
+                const t1 = new Term(2022, 'Spring')
+                const t2 = new Term(2022, 'Fall')
                 const a: Array<Term> = [t2, t1]
                 a.sort(Term.compareFn)
                 expect(a).toEqual([t1, t2])

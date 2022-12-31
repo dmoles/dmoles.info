@@ -1,12 +1,16 @@
 const TERM_NAMES = ['Spring', 'Summer', 'Fall', 'Winter'] as const;
 type TermName = typeof TERM_NAMES[number];
+export type { TermName }
+
+type TermYear = 2022 | 2023
+export type { TermYear }
 
 class Term {
-    year: number;
-    name: TermName;
+    readonly year: TermYear;
+    readonly name: TermName;
     readonly ord: number;
 
-    constructor(year: number, name: TermName) {
+    constructor(year: TermYear, name: TermName) {
         this.year = year;
         this.name = name;
 

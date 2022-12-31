@@ -12,17 +12,17 @@ const hasCourses = computed(() => Array.isArray(props.courses) && props.courses.
 <template>
 <dl class="courses">
   <template v-if="hasCourses" v-for="course in courses">
-    <dt><a :href="course.url">17:610:{{ course.id }}</a></dt>
+    <dt><a :href="course.url">{{ course.fullId }}</a></dt>
     <dd>
       <a :href="course.url">{{ course.name }}</a>
-      <figure v-if="course.projects">
-        <figcaption>projects</figcaption>
-        <ul>
-          <li v-for="project in course.projects">
-            <a :href="project.link">{{ project.name }}</a>
-          </li>
-        </ul>
-      </figure>
+<!--      <figure v-if="course.projects">-->
+<!--        <figcaption>projects</figcaption>-->
+<!--        <ul>-->
+<!--          <li v-for="project in course.projects">-->
+<!--            <a :href="project.link">{{ project.name }}</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </figure>-->
     </dd>
   </template>
   <template v-else>
