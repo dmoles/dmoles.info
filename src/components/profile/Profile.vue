@@ -7,6 +7,7 @@ import {useCoursesStore} from "./stores/courses";
 
 import Courses from './Courses.vue'
 import Organizations from './Organizations.vue'
+import Projects from "./Projects.vue";
 
 import selfie from '../../assets/images/dm-selfie-2022-08-03-1024x1024.png'
 
@@ -56,6 +57,12 @@ const {organizations} = storeToRefs(useOrganizationsStore())
             <th scope="row">Previous courses</th>
             <td>
               <Courses :courses="pastCourses"/>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Projects</th>
+            <td>
+              <Projects/>
             </td>
           </tr>
           <tr>
@@ -302,8 +309,11 @@ div.profile {
       }
     }
 
-    table {
+    > table {
       margin-top: 1rem;
+    }
+
+    table {
       max-width: 100%;
 
       tr {

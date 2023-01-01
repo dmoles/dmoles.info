@@ -23,6 +23,7 @@ export const useCoursesStore = defineStore('courses', () => {
                             name: '“Veracruz is dying”: the US occupation of Veracruz in history and memory',
                             link: '/projects/583/veracruz/'
                         }
+                        // TODO: add project for "Unraveling"
                     )
                 ]
             },
