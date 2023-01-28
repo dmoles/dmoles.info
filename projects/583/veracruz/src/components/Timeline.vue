@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import {storeToRefs} from "pinia";
-import {useDocumentStore} from "./stores/documents";
+import {computed} from "vue";
+import {useDocumentStore} from "../stores/documents";
 import TimelineEntry from "./TimelineEntry.vue"
 
 const {documents} = storeToRefs(useDocumentStore())
 const {tsMin, tsMax} = useDocumentStore()
 
-import { useGeometryStore } from './stores/geometry'
-import {computed} from "vue";
+import { useGeometryStore } from '../stores/geometry'
 const geom = useGeometryStore()
 
 const { mapHeight } = storeToRefs(geom)

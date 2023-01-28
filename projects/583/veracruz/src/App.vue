@@ -2,9 +2,11 @@
 import {computed, ref} from "vue";
 import type {Component, Ref} from "vue"
 import {onMounted, onUnmounted} from 'vue'
-import Profile from './components/Profile.vue'
+import Veracruz from './components/Veracruz.vue'
+
+
 </script>
 
 <template>
-  <Profile/>
+  <Veracruz/>
 </template>

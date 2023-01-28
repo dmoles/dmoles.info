@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Organization} from "./types/Organization";
+import { Organization} from "../types/Organization";
 import {computed} from "vue";
 
 const props = defineProps<{

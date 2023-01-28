@@ -13,6 +13,11 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "projects/**/*.ts",
+    "projects/**/*.vue",
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

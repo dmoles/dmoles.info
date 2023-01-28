@@ -2,10 +2,10 @@
 import {computed} from "vue";
 import Markdown from 'vue3-markdown-it';
 
-import archiveIcon from './assets/images/archive.svg'
-import closeIcon from './assets/images/times-circle.svg'
+import archiveIcon from '../assets/images/archive.svg'
+import closeIcon from '../assets/images/times-circle.svg'
 
-import type {ArchiveDoc} from './types/ArchiveDoc'
+import type {ArchiveDoc} from '../types/ArchiveDoc'
 
 const props = defineProps<{
   doc: ArchiveDoc,
@@ -32,7 +32,7 @@ const leftPx = computed(() => {
 
 const style = computed(() => `top: ${topPx.value}; left: ${leftPx.value};`)
 
-import {useDocumentStore} from "./stores/documents";
+import {useDocumentStore} from "../stores/documents";
 
 const {docSelected, shortDesc, nextDocAfter, prevDocBefore} = useDocumentStore()
 

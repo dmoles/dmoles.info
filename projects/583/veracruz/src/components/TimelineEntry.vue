@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed} from "vue";
-import type {ArchiveDoc} from './types/ArchiveDoc'
-import {useDocumentStore} from "./stores/documents";
+import type {ArchiveDoc} from '../types/ArchiveDoc'
+import {useDocumentStore} from "../stores/documents";
 
 const props = defineProps<{
   doc: ArchiveDoc,
