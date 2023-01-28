@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {onMounted, onUnmounted, ref} from "vue";
 import type {Ref} from "vue"
-import mapSrc from './assets/images/united-fruit-company-map.jpg'
+import mapSrc from '../assets/images/united-fruit-company-map.jpg'
 
 // ------------------------------------------------------------
 // Map scale management
 
-import { useGeometryStore } from './stores/geometry'
+import { useGeometryStore } from '../stores/geometry'
 const geom = useGeometryStore()
 
 const mapRef: Ref<HTMLElement | null> = ref(null)
@@ -58,7 +58,7 @@ onUnmounted(resizeObserver.disconnect)
 
 import DocView from "./DocView.vue";
 import {storeToRefs} from "pinia";
-import {useDocumentStore} from "./stores/documents";
+import {useDocumentStore} from "../stores/documents";
 
 const {documents} = storeToRefs(useDocumentStore())
 

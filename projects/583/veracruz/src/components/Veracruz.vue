@@ -11,7 +11,7 @@ import Timeline from "./Timeline.vue"
 </template>
 
 <style lang="scss">
-@use '../../../../_colors';
+@use '../_colors';
 
 article.veracruz {
   position: relative;

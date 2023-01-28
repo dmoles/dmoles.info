@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {computed, ComputedRef} from "vue";
-import {useCoursesStore} from "./stores/courses";
+import {useCoursesStore} from "../stores/courses";
 import {storeToRefs} from "pinia";
-import {Course} from "./types/Course";
+import {Course} from "../types/Course";
 
 const {allCourses} = storeToRefs(useCoursesStore())
 

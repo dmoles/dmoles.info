@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {Course} from "./types/Course";
+import {Course} from "../types/Course";
 import {computed} from "vue";
 
 const props = defineProps<{

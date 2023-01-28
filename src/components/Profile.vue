@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import {storeToRefs} from "pinia";
 
-import {useOrganizationsStore} from "./stores/organizations";
-import {useTermsStore} from "./stores/terms";
-import {useCoursesStore} from "./stores/courses";
+import {useOrganizationsStore} from "../stores/organizations";
+import {useTermsStore} from "../stores/terms";
+import {useCoursesStore} from "../stores/courses";
 
 import Courses from './Courses.vue'
 import Organizations from './Organizations.vue'
 import Projects from "./Projects.vue";
 
-import selfie from '../../assets/images/dm-selfie-2022-08-03-1024x1024.png'
+import selfie from '../assets/images/dm-selfie-2022-08-03-1024x1024.png'
 
 const {currentCourses, pastCourses} = storeToRefs(useCoursesStore())
 const {currentTerm} = storeToRefs(useTermsStore())
@@ -149,7 +149,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
 </template>
 
 <style lang="scss">
-@use '../../colors';
+@use '../colors';
 
 @media only screen and (min-width: 896px) {
   div.profile {
