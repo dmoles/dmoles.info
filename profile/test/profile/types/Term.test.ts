@@ -1,6 +1,5 @@
 import {beforeEach, describe, expect, it} from 'vitest'
-
-import {Term} from "../../../src/components/profile/types/Term";
+import { Term } from "../../../src/types/Term"
 
 describe(Term.name, () => {
     let term: Term

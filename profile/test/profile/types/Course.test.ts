@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, it} from 'vitest'
 
-import {Course, COURSE_URL_BASE, PROGRAM_ID} from "../../../src/components/profile/types/Course";
+import {Course, COURSE_URL_BASE, PROGRAM_ID} from "../../../src/types/Course";
 
 describe(Course.name, () => {
 
