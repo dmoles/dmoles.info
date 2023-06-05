@@ -17,6 +17,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
 
 </script>
 
+<!-- TODO: update for Madrid / leaving Berkeley (incl. full time, work status, etc.) -->
 <!-- TODO: Turn this *all* into data, cf. "current courses" -->
 <template>
   <div class="profile">

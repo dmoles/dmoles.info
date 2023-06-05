@@ -31,6 +31,13 @@ export const useCoursesStore = defineStore('courses', () => {
                 'Spring': [
                     new Course(522, 'Cataloging and Classification'),
                     new Course(532, 'Collection Development & Management')
+                ],
+                'Fall': [
+                  new Course(502, 'Colloquium in LIS'),
+                  new Course(524, 'Metadata for the Information Professional'),
+                  new Course(533, 'Manuscripts & Archives'),
+                  new Course(553, 'Digital Libraries'),
+                  new Course(556, 'Preservation of Library & Archival Materials')
                 ]
             }
         }

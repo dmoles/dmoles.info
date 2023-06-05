@@ -9,9 +9,14 @@ export const useTermsStore = defineStore('terms', () => {
 
     const fall2022 = new Term(2022, 'Fall')
     const spring2023 = new Term(2023, 'Spring')
+    const fall2023 = new Term(2023, 'Fall')
 
     function initTerms(): Array<Term> {
-        const terms = [fall2022, spring2023]
+        const terms = [
+            fall2022,
+            spring2023,
+            fall2023
+        ]
         terms.sort() // just to be sure
         return terms
     }
@@ -21,7 +26,7 @@ export const useTermsStore = defineStore('terms', () => {
 
     const terms = ref<Array<Term>>(initTerms())
 
-    const currentTerm = ref<Term>(spring2023)
+    const currentTerm = ref<Term>(fall2023)
 
     return {terms, currentTerm}
 })
