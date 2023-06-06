@@ -1,4 +1,8 @@
 <script setup lang="ts">
+
+// ------------------------------------------------------------
+// Imports
+
 import {computed} from "vue";
 import Markdown from 'vue3-markdown-it';
 
@@ -7,13 +11,19 @@ import closeIcon from '../assets/images/times-circle.svg'
 
 import type {ArchiveDoc} from '../types/ArchiveDoc'
 
+import {useDocumentStore} from "../stores/documents";
+
+// ------------------------------------------------------------
+// Properties
+
 const props = defineProps<{
   doc: ArchiveDoc,
   xScale: number,
   yScale: number
 }>()
 
-const inputId = computed(() => `docView-${props.doc.id}`)
+// ------------------------------------------------------------
+// Layout & CSS
 
 const x = computed(() => props.doc.location.x)
 const y = computed(() => props.doc.location.y)
@@ -32,12 +42,16 @@ const leftPx = computed(() => {
 
 const style = computed(() => `top: ${topPx.value}; left: ${leftPx.value};`)
 
-import {useDocumentStore} from "../stores/documents";
+const inputId = computed(() => `docView-${props.doc.id}`)
+
+// ------------------------------------------------------------
+// Navigation
 
 const {docSelected, shortDesc, nextDocAfter, prevDocBefore} = useDocumentStore()
 
 const visible = docSelected(props.doc)
 const nextDoc = nextDocAfter(props.doc)
+const prevDoc = prevDocBefore(props.doc)
 
 function selectNext() {
   visible.value = false
@@ -48,8 +62,6 @@ function selectNext() {
   }
 }
 
-const prevDoc = prevDocBefore(props.doc)
-
 function selectPrev() {
   visible.value = false
   let pd = prevDoc.value;
@@ -58,7 +70,6 @@ function selectPrev() {
     prevSelected.value = true
   }
 }
-
 </script>
 
 <template>

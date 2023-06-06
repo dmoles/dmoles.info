@@ -1,28 +1,37 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted, ref} from "vue";
-import type {Ref} from "vue"
+
+// ------------------------------------------------------------
+// Imports
+
+import type { Ref } from "vue"
+import { onMounted, onUnmounted, ref } from "vue"
+import { storeToRefs } from "pinia"
+
 import mapSrc from '../assets/images/united-fruit-company-map.jpg'
+
+import { useGeometryStore } from '../stores/geometry'
+import { useDocumentStore } from "../stores/documents"
+
+import DocView from "./DocView.vue"
+
 
 // ------------------------------------------------------------
 // Map scale management
 
-import { useGeometryStore } from '../stores/geometry'
 const geom = useGeometryStore()
+const { mapWidth, mapHeight, xScale, yScale } = storeToRefs(geom)
 
 const mapRef: Ref<HTMLElement | null> = ref(null)
 
-const { mapWidth, mapHeight, xScale, yScale } = storeToRefs(geom)
-
-
 function rescale() {
-  const mapVal = mapRef.value;
+  const mapVal = mapRef.value
   if (mapVal == null) {
     return
   }
 
   const map: HTMLElement = mapVal
-  const w = map.offsetWidth;
-  const h = map.offsetHeight;
+  const w = map.offsetWidth
+  const h = map.offsetHeight
 
   console.log('setting mapWidth => %o', w)
   console.log('setting mapHeight => %o', h)
@@ -56,11 +65,7 @@ onUnmounted(resizeObserver.disconnect)
 // ------------------------------------------------------------
 // Documents
 
-import DocView from "./DocView.vue";
-import {storeToRefs} from "pinia";
-import {useDocumentStore} from "../stores/documents";
-
-const {documents} = storeToRefs(useDocumentStore())
+const { documents } = storeToRefs(useDocumentStore())
 
 
 </script>

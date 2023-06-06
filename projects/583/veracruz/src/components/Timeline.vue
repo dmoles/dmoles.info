@@ -1,16 +1,27 @@
 <script setup lang="ts">
-import {storeToRefs} from "pinia";
-import {computed} from "vue";
-import {useDocumentStore} from "../stores/documents";
+
+// ------------------------------------------------------------
+// Imports
+
+import { storeToRefs } from "pinia"
+import { computed } from "vue"
+
+import { useDocumentStore } from "../stores/documents"
+import { useGeometryStore } from '../stores/geometry'
+
 import TimelineEntry from "./TimelineEntry.vue"
 
-const {documents} = storeToRefs(useDocumentStore())
-const {tsMin, tsMax} = useDocumentStore()
+// ------------------------------------------------------------
+// Stores
 
-import { useGeometryStore } from '../stores/geometry'
+const { documents } = storeToRefs(useDocumentStore())
+const { tsMin, tsMax } = useDocumentStore()
+
 const geom = useGeometryStore()
-
 const { mapHeight } = storeToRefs(geom)
+
+// ------------------------------------------------------------
+// Misc. constants
 
 const tlOffset = 48 // TODO: something more accurate
 
@@ -24,14 +35,14 @@ const tlHeight = computed(() => {
   <div class="vc-timeline">
     <h2>Timeline</h2>
     <div class="vc-timeline-entries">
-    <TimelineEntry
-      v-for="doc in documents"
-      :doc="doc"
-      :ts-min="tsMin"
-      :ts-max="tsMax"
-      :tlHeight="tlHeight"
-      :tlOffset="tlOffset"
-    />
+      <TimelineEntry
+        v-for="doc in documents"
+        :doc="doc"
+        :ts-min="tsMin"
+        :ts-max="tsMax"
+        :tlHeight="tlHeight"
+        :tlOffset="tlOffset"
+      />
     </div>
   </div>
 </template>
