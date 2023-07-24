@@ -38,7 +38,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
           </tr>
           <tr>
             <th scope="row">Student status</th>
-            <td>Online, part-time</td>
+            <td>Online, full time</td>
           </tr>
           <tr>
             <th scope="row">Academic interests</th>
@@ -78,7 +78,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
           </tr>
           <tr>
             <th scope="row">Work status</th>
-            <td>Full time</td>
+            <td>Between gigs</td>
           </tr>
           <tr>
             <th scope="row">Contact</th>
@@ -102,25 +102,28 @@ const {organizations} = storeToRefs(useOrganizationsStore())
 
       <section class="about">
         <h2>About me</h2>
+
         <p>
-          I’m attending from Albany, California, just north of
-          Berkeley, where I work as head of applications for Library
-          IT at the <a href="https://www.lib.berkeley.edu">UC Berkeley
-          Library</a>— roughly 50/50 as a software developer and as a
-          manager of other software developers.
+          I'm attending from Madrid, Spain, where I moved with my family
+          in July 2023 with the intention of spending a year before returning
+          to our home in Northern California.
         </p>
 
         <p>
-          I previously worked in digital preservation and data
+          In June 2023 I resigned my position as head of applications for
+          Library IT at the <a href="https://www.lib.berkeley.edu">UC
+          Berkeley Library</a>, where I'd been working for four years,
+          in order to (1) move to Madrid and (2) concentrate on my MI.
+          Before Berkeley, I worked in digital preservation and data
           publication at the California Digital Library (part of the
           UC Office of the President in Oakland), and before that for
           a library software vendor called Innovative Interfaces, so
           I’ve been in and around libraries and archives for a
-          while. I like working here and I very much like working with
-          librarians and archivists, and I hope to keep doing both,
-          but ideally in a role that has me involved more directly and
-          creatively in GLAM work rather than just helping make other
-          people’s projects happen.
+          while. I've enjoyed working in and with libraries and I very
+          much like working with librarians and archivists, and I hope
+          to keep doing both, but ideally in a role that has me involved
+          more directly and creatively in GLAM work rather than just
+          helping make other people’s projects happen.
         </p>
 
         <p>
@@ -133,9 +136,9 @@ const {organizations} = storeToRefs(useOrganizationsStore())
         </p>
 
         <p>
-          I have two small children (ages 5 and 8) and I <a
+          I have two small children (ages 6 and 9) and I <a
           href="https://dmoles.net/">sometimes write science
-          fiction</a>. Although not so much since the small children
+          fiction</a>, although not so much since the small children
           came along, and probably even less till I’ve completed the MI
           program.
         </p>
