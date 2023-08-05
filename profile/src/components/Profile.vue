@@ -49,7 +49,10 @@ const {organizations} = storeToRefs(useOrganizationsStore())
             </td>
           </tr>
           <tr>
-            <th scope="row">Current courses ({{ currentTerm }})</th>
+            <th scope="row">
+              Current courses
+              <span style="white-space: nowrap">({{ currentTerm }})</span>
+            </th>
             <td>
               <Courses :courses="currentCourses"/>
             </td>
@@ -154,6 +157,9 @@ const {organizations} = storeToRefs(useOrganizationsStore())
 
 <style lang="scss">
 @use '../colors';
+@use '../fonts';
+
+@import '../fonts';
 
 @media only screen and (min-width: 896px) {
   div.profile {
@@ -249,7 +255,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
 }
 
 div.profile {
-  font-family: Arvo, 'serif';
+  font-family: fonts.$family-body;
   color: black;
   background: colors.$cafe-cream;
 
@@ -283,7 +289,7 @@ div.profile {
       font-size: 3rem;
       line-height: 1.2em;
       text-transform: uppercase;
-      font-family: Montserrat, 'sans-serif';
+      font-family: fonts.$family-heading;
     }
 
     h2 {
@@ -291,21 +297,22 @@ div.profile {
       text-transform: uppercase;
       font-size: 1rem;
       line-height: 1.2em;
-      font-family: Montserrat, 'sans-serif';
-      margin-bottom: 0.9rem;
+      font-family: fonts.$family-heading;
+      margin-bottom: fonts.$size-smaller;
     }
 
     p {
-      font-size: 1rem;
-      line-height: 1.2em;
-      font-family: Arvo, 'serif';
-      margin-bottom: 0.9rem;
+      font-size: fonts.$size-body;
+      line-height: 1.2rem;
+      font-family: fonts.$family-body;
+      margin-bottom: fonts.$size-smaller;
     }
 
     a {
-      color: colors.$aircraft-blue;
-      text-decoration-thickness: 0.5px;
-      text-decoration-skip-spaces: all;
+      color: colors.$oxford-blue;
+      text-decoration-thickness: 0.1px;
+      text-decoration-style: dotted;
+      text-decoration-skip-ink: all;
       text-underline-offset: 2px;
 
       &:visited {
@@ -321,18 +328,26 @@ div.profile {
       max-width: 100%;
 
       tr {
+
+        td {
+          font-size: fonts.$size-body;
+        }
+
         th {
           vertical-align: top;
           text-align: right;
+
+          font-family: fonts.$family-heading;
           font-weight: bold;
+          font-size: fonts.$size-smaller;
+
           padding-right: 1rem;
           text-transform: lowercase;
         }
 
         td, th {
-          font-size: 1rem;
           padding-bottom: 1.2rem;
-          line-height: 1.2em;
+          line-height: 1.2rem !important;
         }
       }
     }
@@ -341,6 +356,8 @@ div.profile {
       margin: 0;
 
       th {
+        font-family: fonts.$family-body;
+        font-size: fonts.$size-body;
         font-weight: normal;
         padding-right: 0.25rem;
         // text-align: left;
@@ -350,6 +367,7 @@ div.profile {
         tr {
           td, th {
             padding-bottom: 0.3rem;
+            vertical-align: baseline;
           }
 
           &:last-of-type {
@@ -373,8 +391,8 @@ div.profile {
         border-top: 1px dotted colors.$jasper-blue;
         text-align: center;
         font-style: italic;
-        font-size: 0.9rem;
-        font-family: Montserrat, 'sans-serif';
+        font-size: fonts.$size-smaller;
+        font-family: fonts.$family-heading;
       }
     }
   }

@@ -13,18 +13,18 @@ const coursesWithProjects: ComputedRef<Course[]> = computed(() => {
 </script>
 
 <template>
-  <table class="projects">
-    <tr v-for="course in coursesWithProjects">
-      <th>{{ course.id }}</th>
-      <td class="course-projects">
+  <dl>
+    <template v-for="course in coursesWithProjects">
+      <dt>{{course.id}}</dt>
+      <dd>
         <ul>
           <li v-for="project in course.projects">
-            <a :href="project.link">{{ project.name }}</a>
+            <a :href="project.link" target="_blank">{{ project.name }}</a>
           </li>
         </ul>
-      </td>
-    </tr>
-  </table>
+      </dd>
+    </template>
+  </dl>
 </template>
 
 <style lang="scss">
@@ -39,42 +39,5 @@ table.projects {
     font-size: 0.9rem;
   }
 }
-
-//ul.projects {
-//
-//  span.projects-course-id {
-//    font-family: Montserrat, 'sans-serif';
-//    text-transform: uppercase;
-//    font-weight: bold;
-//    font-size: 0.729rem;
-//  }
-//
-//  ul.course-projects {
-//    font-size: 0.9rem;
-//  }
-//}
-//figure {
-//  grid-column: 2;
-//  margin-top: 0.45rem;
-//
-//  figcaption {
-//    //grid-column: 1;
-//    justify-self: end;
-//
-//    font-family: Montserrat, 'sans-serif';
-//    text-transform: uppercase;
-//    font-weight: bold;
-//    font-size: 0.729rem;
-//  }
-//
-//  ul {
-//    //grid-column: 2;
-//    font-size: 0.9rem;
-//
-//    li:not(:last-of-type) {
-//      margin-bottom: 0.15rem;
-//    }
-//  }
-//}
 
 </style>
