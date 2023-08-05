@@ -9,7 +9,7 @@ import Courses from './Courses.vue'
 import Organizations from './Organizations.vue'
 import Projects from "./Projects.vue";
 
-import selfie from '../assets/images/dm-selfie-2022-08-03-1024x1024.png'
+import selfie from '../assets/images/dm-selfie-2022-08-03-1024x1024.jpg'
 
 const {currentCourses, pastCourses} = storeToRefs(useCoursesStore())
 const {currentTerm} = storeToRefs(useTermsStore())
