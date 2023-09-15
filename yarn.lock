@@ -821,6 +821,8 @@ __metadata:
     markdown-it: ^13.0.1
     pinia: ^2.0.22
     sass: ^1.54.9
+    three: 0.134
+    troisjs: ^0.3.4
     typescript: ^4.6.4
     vite: ^4.0.5
     vitest: ^0.26.2
@@ -1995,6 +1997,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"three@npm:0.134":
+  version: 0.134.0
+  resolution: "three@npm:0.134.0"
+  checksum: 1b4e64f75b46666985db15ff3379ac9b6b21bb0e06d90748e4d4a2bc2a9374a2133bd27b28c54797bb368d2efb2806c48388c1b0ae88160f8ec57e116e351cf2
+  languageName: node
+  linkType: hard
+
 "tinybench@npm:^2.3.1":
   version: 2.5.0
   resolution: "tinybench@npm:2.5.0"
@@ -2029,6 +2038,13 @@ __metadata:
   dependencies:
     is-number: ^7.0.0
   checksum: f76fa01b3d5be85db6a2a143e24df9f60dd047d151062d0ba3df62953f2f697b16fe5dad9b0ac6191c7efc7b1d9dcaa4b768174b7b29da89d4428e64bc0a20ed
+  languageName: node
+  linkType: hard
+
+"troisjs@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "troisjs@npm:0.3.4"
+  checksum: bc6a2e4b5b080e22930553622be71fb4881a5c5b087663ccc087566e257e16087950e64d68a94287c5b4bf8463db31f54160efa7b8133754abf703ad34b73def
   languageName: node
   linkType: hard
 
