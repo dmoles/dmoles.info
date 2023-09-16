@@ -22,6 +22,7 @@
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^18.11.18",
+    "@types/three": "^0.156.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "typescript": "^4.6.4",
     "vite": "^4.0.5",

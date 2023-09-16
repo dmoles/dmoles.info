@@ -333,7 +333,7 @@ const allStars: Array<Star> = [
     z: 6.844
   },
   {
-    name: "gam Leo C",
+    name: "AD Leonis",
     type: "dM3",
     temp: 3000,
     rgb: "#ffb46b",
