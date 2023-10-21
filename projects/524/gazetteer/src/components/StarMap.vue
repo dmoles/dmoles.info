@@ -11,7 +11,7 @@ const { stars, xiUMa, sol } = useStarsStore()
 // const cameraPosInitial = { x: -15.293, y: 2.027, z: 10.0 }
 // const cameraPosInitial = { x: xiUMa.x * 2, y: xiUMa.y * 2, z: -xiUMa.z * 2 }
 
-const cameraPosInitial = { x: -13, y: 4, z: 10 }
+const cameraPosInitial = { x: -12.1, y: 3.9, z: 12}
 
 // const cameraTargetInitial = sol
 const cameraTargetInitial = xiUMa
@@ -40,20 +40,14 @@ const gridSize = 30
 const gridThickness = sphereSize / 2
 const gridDistance = (gridSize / 2)
 
-const gridBackgroundYZ = 0x001020
-const gridBackgroundXZ = 0x200010
-const gridBackgroundXY = 0x102000
 
 const gridIncrements = 9
 const gridSpacing = gridSize / (1 + gridIncrements)
-const gridForeground = 0xc0c000
 
 const gridOffset = (gridSize / 2) // + (gridSpacing / 2)
 
-const textColor = 0xffffff
 
-
-const pathPerseverance: Array<Star> = [
+const pathPerseverance: Array<Star> = namesToStars([
   "53 UMa",
   "Groombridge 1830",
   "LP 169-22",
@@ -65,11 +59,34 @@ const pathPerseverance: Array<Star> = [
   "GJ 1111",
   "WISE J085510.83-071442.5",
   "Sol"
-].map((name: string) => {
-  return <Star>stars.find((s) => s.name === name)
-})
+])
 
-function drawPath(pathStars: Array<Star>, pathColor: number) {
+const pathXiUmaDefault: Array<Star> = namesToStars([
+  "53 UMa",
+  "Ross 104",
+  "AD Leonis",
+  "GJ 1111",
+  "WISE J085510.83-071442.5",
+  "Sol"
+])
+
+const path61UMaDefault: Array<Star> = namesToStars([
+  "61 UMa",
+  "Ross 905",
+  "WISE J121756.90+162640.8",
+  "GJ 1156",
+  "Wolf 424",
+  "Wolf 359",
+  "Sol"
+])
+
+function namesToStars(names: Array<string>): Array<Star> {
+  return names.map((name: string) => {
+    return <Star>stars.find((s) => s.name === name)
+  })
+}
+
+function drawPath(pathStars: Array<Star>, pathColor: string) {
   const points: Array<THREE.Vector3> = pathStars.map((s) => new THREE.Vector3(s.x, s.y, s.z))
   const geometry = new THREE.BufferGeometry().setFromPoints( points );
   const material = new THREE.LineBasicMaterial({ color: pathColor })
@@ -77,7 +94,6 @@ function drawPath(pathStars: Array<Star>, pathColor: number) {
 
   const scn: THREE.Scene = (<typeof Scene>scene.value).scene
   scn.add(line)
-  reRender()
 }
 
 function reRender() {
@@ -87,15 +103,42 @@ function reRender() {
   rndr.render(scn, cam)
 }
 
+function reLook() {
+  const cam: THREE.Camera = (<typeof Camera>camera.value).camera
+  cam.lookAt(cameraTargetInitial)
+}
+
+// const gridBackgroundYZ = '#001020'
+// const gridBackgroundXZ = '#200010'
+// const gridBackgroundXY = '#102000'
+// const gridForeground = '#c0c000'
+// const textColor = '#ffffff'
+// const pathColor61Uma = '#ff7f00'
+// const pathColorXiUma = '#007fff'
+// const pathColorPerseverance = '#00ff7f'
+const gridBackgroundYZ = '#e8f0f8'
+const gridBackgroundXZ = '#f8e8f0'
+const gridBackgroundXY = '#f0f8e8'
+const gridForeground = '#002020'
+const textColor = '#000000'
+const pathColor61Uma = '#603000'
+const pathColorXiUma = '#003060'
+const pathColorPerseverance = '#006030'
+
+
 onMounted(() => {
-  drawPath(pathPerseverance, 0x008040)
+  drawPath(path61UMaDefault, pathColor61Uma)
+  drawPath(pathXiUmaDefault, pathColorXiUma)
+  drawPath(pathPerseverance, pathColorPerseverance)
+  reLook()
+  reRender()
 })
 
 </script>
 
 <template>
-  <Renderer ref="renderer" resize="window" :orbitCtrl="true" :shadow="true" :antialias="true">
-    <Scene ref="scene" :background="0x000000">
+  <Renderer ref="renderer" :pixelRatio="2" resize="true" :orbitCtrl="true" :shadow="true" :antialias="true">
+    <Scene ref="scene" :background="'#000000'">
       <Camera ref="camera" :position="cameraPosInitial" :lookAt="cameraTargetInitial"/>
       <DirectionalLight ref="light"/>
 
@@ -140,7 +183,7 @@ onMounted(() => {
 
       <template v-for="star in starsToRender">
         <Sphere :radius="sphereSize" :position="{ x: star.x, y: star.y, z: star.z}">
-          <ToonMaterial :color="star.rgb"/>
+          <BasicMaterial :color="star.rgb"/>
         </Sphere>
         <Text
           :text="star.name"
@@ -160,7 +203,7 @@ onMounted(() => {
         <!--          :height="star.y"-->
         <!--          :position="{x: star.x, y: star.y / 2, z: star.z}"-->
         <!--        >-->
-        <!--          <BasicMaterial :color="0x000000"/>-->
+        <!--          <BasicMaterial :color="'#000000'"/>-->
         <!--        </Cylinder>-->
       </template>
     </Scene>
