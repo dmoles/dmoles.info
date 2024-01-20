@@ -17,7 +17,7 @@ export const useCoursesStore = defineStore('courses', () => {
     return {
       2022: {
         'Fall': [
-          new Course(501, 'Introduction to Library and Information Professions'),
+          // new Course(501, 'Introduction to Library and Information Professions'),
           new Course(580, 'Knowledge & Society',
             {
               name: 'Memory and Forgetting at Angel Island Immigration Station',
@@ -50,7 +50,7 @@ export const useCoursesStore = defineStore('courses', () => {
           new Course(532, 'Collection Development & Management')
         ],
         'Fall': [
-          new Course(502, 'Colloquium in LIS'),
+          // new Course(502, 'Colloquium in LIS'),
           new Course(510, 'Human Information Behavior',
             {
               name: 'Beyond the walls of the citadel: Effective library outreach to graduate students',
@@ -86,7 +86,7 @@ export const useCoursesStore = defineStore('courses', () => {
       },
       2024: {
         'Spring': [
-          new Course(503, 'ePortfolio Capstone'),
+          // new Course(503, 'ePortfolio Capstone'),
           new Course(534, 'Records Management'),
           new Course(599, 'Special Topics: Digital Preservation')
         ]
