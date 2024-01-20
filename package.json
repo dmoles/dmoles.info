@@ -24,6 +24,7 @@
     "@types/node": "^18.11.18",
     "@types/three": "^0.156.0",
     "@vitejs/plugin-vue": "^4.2.3",
+    "semver": "^7.5.4",
     "typescript": "^4.6.4",
     "vite": "^5.0.12",
     "vitest": "^0.26.2",
