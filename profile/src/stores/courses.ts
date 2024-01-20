@@ -12,6 +12,7 @@ export const useCoursesStore = defineStore('courses', () => {
   // --------------------------------------------------
   // Internal functions and properties
 
+  // TODO: auto-generate escaped URLs from course + filename
   function initCourses(): CoursesByYear {
     return {
       2022: {
@@ -30,6 +31,11 @@ export const useCoursesStore = defineStore('courses', () => {
               link: 'https://dmoles.github.io/veracruz/'
             },
             {
+              name: 'Product, Process, People, Praxis: Indigenous and Community Archives against MPLP',
+              desc: 'term paper',
+              link: '/files/583/583%20Term%20Paper%20v2.pdf'
+            },
+            {
               // TODO: formatted text in project names (Markdown?)
               name: 'Benjamin Rosenbaum’s “The Unraveling”',
               desc: 'digital collection finding aid',
@@ -45,7 +51,12 @@ export const useCoursesStore = defineStore('courses', () => {
         ],
         'Fall': [
           new Course(502, 'Colloquium in LIS'),
-          new Course(510, 'Human Information Behavior'),
+          new Course(510, 'Human Information Behavior',
+            {
+              name: 'Beyond the walls of the citadel: Effective library outreach to graduate students',
+              desc: 'term paper',
+              link: 'files/510/510%20Term%20Paper%20-%20David%20Moles.pdf'
+            }),
           new Course(524, 'Metadata for the Information Professional',
             {
               name: 'TTRPG•ML: Sketch for a tabletop role-playing game markup language',
@@ -53,7 +64,17 @@ export const useCoursesStore = defineStore('courses', () => {
               link: 'https://dmoles.github.io/ttrpg-ml/'
             }
           ),
-          new Course(533, 'Manuscripts & Archives'),
+          new Course(533, 'Manuscripts & Archives',
+            // {
+            //   name: 'A Critique of the Finding Aid for UCLA’s Japanese American Research Project (Yuji Ichioka) Collection of Material about Japanese in the United States',
+            //   desc: 'term paper',
+            //   link: '/files/533/M10_Finding_Aid_Critique_David%20Moles.pdf'
+            // },
+            {
+              name: 'Reference Services Review: Archives and Records at Oxford University',
+              desc: 'term paper',
+              link: '/files/533/M15_Reference%20Services%20Review_David%20Moles.pdf'
+            }),
           new Course(556, 'Preservation of Library & Archival Materials',
             {
               name: 'Floppy Disks: Care, Handling, and Preservation',
@@ -61,6 +82,13 @@ export const useCoursesStore = defineStore('courses', () => {
               link: '/files/556/M4_Leaflet_David%20Moles%20v2.pdf'
             }
           )
+        ]
+      },
+      2024: {
+        'Spring': [
+          new Course(503, 'ePortfolio Capstone'),
+          new Course(534, 'Records Management'),
+          new Course(599, 'Special Topics: Digital Preservation')
         ]
       }
     }
@@ -96,6 +124,7 @@ export const useCoursesStore = defineStore('courses', () => {
   const allCourses: ComputedRef<Course[]> = computed(() => {
     return Object.values(courses.value)
       .flatMap((cfy) => Object.values(cfy).flat())
+      .sort((c1, c2) => c1.id - c2.id)
   })
 
   return { currentCourses, pastCourses, allCourses }

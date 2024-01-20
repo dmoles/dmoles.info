@@ -2,7 +2,7 @@ const TERM_NAMES = ['Spring', 'Summer', 'Fall', 'Winter'] as const;
 type TermName = typeof TERM_NAMES[number];
 export type { TermName }
 
-type TermYear = 2022 | 2023
+type TermYear = 2022 | 2023 | 2024
 export type { TermYear }
 
 class Term {

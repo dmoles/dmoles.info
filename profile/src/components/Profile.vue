@@ -64,7 +64,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
             </td>
           </tr>
           <tr>
-            <th scope="row">Projects</th>
+            <th scope="row">Selected Projects</th>
             <td>
               <Projects/>
             </td>

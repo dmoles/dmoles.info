@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {computed, ComputedRef} from "vue";
-import {useCoursesStore} from "../stores/courses";
-import {storeToRefs} from "pinia";
-import {Course} from "../types/Course";
+import { computed, ComputedRef } from "vue"
+import { useCoursesStore } from "../stores/courses"
+import { storeToRefs } from "pinia"
+import { Course } from "../types/Course"
 
-const {allCourses} = storeToRefs(useCoursesStore())
+const { allCourses } = storeToRefs(useCoursesStore())
 
 const coursesWithProjects: ComputedRef<Course[]> = computed(() => {
   return allCourses.value.filter((c) => c.projects.length > 0)
@@ -15,13 +15,15 @@ const coursesWithProjects: ComputedRef<Course[]> = computed(() => {
 <template>
   <dl class="projects">
     <template v-for="course in coursesWithProjects">
-      <dt>{{course.id}}</dt>
+      <dt>{{ course.id }}</dt>
       <dd>
         <ul>
           <li v-for="project in course.projects">
-            <a :href="project.link" target="_blank">{{ project.name }}</a>
+            <span class="project-name">
+              <a :href="project.link" target="_blank">{{ project.name }}</a>
+            </span>
             <template v-if="project.desc">
-              ({{ project.desc }})
+              &#x202F;<span class="project-desc">({{ project.desc }})</span>
             </template>
           </li>
         </ul>
@@ -32,12 +34,18 @@ const coursesWithProjects: ComputedRef<Course[]> = computed(() => {
 
 <style lang="scss">
 dl.projects {
-dd {
-  li {
-    margin-bottom: 0.5em;
+  dd {
+    li {
+      margin-bottom: 0.5em;
+
+      .project-desc {
+        display: inline-block;
+        white-space: nowrap;
+      }
+    }
   }
 }
-}
+
 // TODO: something less sucky
 //table.projects {
 //  margin: 0;
