@@ -17,7 +17,12 @@ export const useCoursesStore = defineStore('courses', () => {
       2022: {
         'Fall': [
           new Course(501, 'Introduction to Library and Information Professions'),
-          new Course(580, 'Knowledge & Society'),
+          new Course(580, 'Knowledge & Society',
+            {
+              name: 'Memory and Forgetting at Angel Island Immigration Station',
+              desc: 'term paper',
+              link: '/files/580/580%20TP2%20-%20Angel%20Island%20-%20final.pdf'
+            }),
           new Course(583, 'Foundations of Preservation and Archives',
             {
               name: '“Veracruz is dying”: the US occupation of Veracruz in history and memory',
