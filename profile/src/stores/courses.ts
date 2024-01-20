@@ -19,18 +19,15 @@ export const useCoursesStore = defineStore('courses', () => {
           new Course(501, 'Introduction to Library and Information Professions'),
           new Course(580, 'Knowledge & Society'),
           new Course(583, 'Foundations of Preservation and Archives',
-            // TODO: hierarchical project artifacts
             {
-              name: '“Veracruz is dying”: the US occupation of Veracruz in history and memory (online exhibit prototype)',
-              link: '/projects/583/veracruz/'
-            },
-            {
-              name: '“Veracruz is dying” (proposal)',
-              link: '/files/583/Veracruz%20is%20dying%20-%20Proposal.pdf'
+              name: '“Veracruz is dying”: the US occupation of Veracruz in history and memory',
+              desc: 'online exhibit prototype',
+              link: 'https://dmoles.github.io/veracruz/'
             },
             {
               // TODO: formatted text in project names (Markdown?)
-              name: 'Benjamin Rosenbaum’s “The Unraveling” (digital collection finding aid)',
+              name: 'Benjamin Rosenbaum’s “The Unraveling”',
+              desc: 'digital collection finding aid',
               link: '/files/583/583%20Personal%20Collection%20-%20Finding%20Aid.pdf'
             }
           )
@@ -44,11 +41,18 @@ export const useCoursesStore = defineStore('courses', () => {
         'Fall': [
           new Course(502, 'Colloquium in LIS'),
           new Course(510, 'Human Information Behavior'),
-          new Course(524, 'Metadata for the Information Professional'),
+          new Course(524, 'Metadata for the Information Professional',
+            {
+              name: 'TTRPG•ML: Sketch for a tabletop role-playing game markup language',
+              desc: 'XML schema',
+              link: 'https://dmoles.github.io/ttrpg-ml/'
+            }
+          ),
           new Course(533, 'Manuscripts & Archives'),
           new Course(556, 'Preservation of Library & Archival Materials',
             {
-              name: 'Floppy Disks: Care, Handling, and Preservation (leaflet)',
+              name: 'Floppy Disks: Care, Handling, and Preservation',
+              desc: 'leaflet',
               link: '/files/556/M4_Leaflet_David%20Moles%20v2.pdf'
             }
           )

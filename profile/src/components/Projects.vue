@@ -13,13 +13,16 @@ const coursesWithProjects: ComputedRef<Course[]> = computed(() => {
 </script>
 
 <template>
-  <dl>
+  <dl class="projects">
     <template v-for="course in coursesWithProjects">
       <dt>{{course.id}}</dt>
       <dd>
         <ul>
           <li v-for="project in course.projects">
             <a :href="project.link" target="_blank">{{ project.name }}</a>
+            <template v-if="project.desc">
+              ({{ project.desc }})
+            </template>
           </li>
         </ul>
       </dd>
@@ -28,16 +31,23 @@ const coursesWithProjects: ComputedRef<Course[]> = computed(() => {
 </template>
 
 <style lang="scss">
-// TODO: something less sucky
-table.projects {
-  margin: 0;
-  th {
-    font-weight: normal !important;
-  }
-
-  td {
-    font-size: 0.9rem;
+dl.projects {
+dd {
+  li {
+    margin-bottom: 0.5em;
   }
 }
+}
+// TODO: something less sucky
+//table.projects {
+//  margin: 0;
+//  th {
+//    font-weight: normal !important;
+//  }
+//
+//  td {
+//    font-size: 0.9rem;
+//  }
+//}
 
 </style>
