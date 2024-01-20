@@ -17,7 +17,6 @@ const {organizations} = storeToRefs(useOrganizationsStore())
 
 </script>
 
-<!-- TODO: update for Madrid / leaving Berkeley (incl. full time, work status, etc.) -->
 <!-- TODO: Turn this *all* into data, cf. "current courses" -->
 <template>
   <div class="profile">
@@ -38,7 +37,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
           </tr>
           <tr>
             <th scope="row">Student status</th>
-            <td>Online, full time</td>
+            <td>Online, part time</td>
           </tr>
           <tr>
             <th scope="row">Academic interests</th>
