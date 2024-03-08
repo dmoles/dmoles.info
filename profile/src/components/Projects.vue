@@ -45,17 +45,4 @@ dl.projects {
     }
   }
 }
-
-// TODO: something less sucky
-//table.projects {
-//  margin: 0;
-//  th {
-//    font-weight: normal !important;
-//  }
-//
-//  td {
-//    font-size: 0.9rem;
-//  }
-//}
-
 </style>

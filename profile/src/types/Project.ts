@@ -4,4 +4,10 @@ type Project = {
     link: string
 }
 
-export type { Project }
+type Publication = Project & {
+    abstract: string,
+    venue: string,
+    date: string
+}
+
+export type { Project, Publication }

@@ -10,6 +10,7 @@ import Organizations from './Organizations.vue'
 import Projects from "./Projects.vue";
 
 import selfie from '../assets/images/dm-selfie-2022-08-03-1024x1024.jpg'
+import Publications from "./Publications.vue"
 
 const {currentCourses, pastCourses} = storeToRefs(useCoursesStore())
 const {currentTerm} = storeToRefs(useTermsStore())
@@ -66,6 +67,12 @@ const {organizations} = storeToRefs(useOrganizationsStore())
             <th scope="row">Selected Projects</th>
             <td>
               <Projects/>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Selected Publications</th>
+            <td>
+              <Publications/>
             </td>
           </tr>
           <tr>

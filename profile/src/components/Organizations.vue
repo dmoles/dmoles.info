@@ -14,6 +14,7 @@ const hasOrganizations = computed(() => Array.isArray(props.organizations) && pr
     <template v-if="hasOrganizations" v-for="org in organizations">
       <li>
         <a :href="org.link" :title="org.name">{{ org.abbr }}</a>
+        <template v-if="org.role"> ({{ org.role }})</template>
       </li>
     </template>
   </ul>
