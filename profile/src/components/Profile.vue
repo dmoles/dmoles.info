@@ -87,7 +87,7 @@ const {organizations} = storeToRefs(useOrganizationsStore())
           </tr>
           <tr>
             <th scope="row">Work status</th>
-            <td>Between gigs</td>
+            <td>Actively looking</td>
           </tr>
           <tr>
             <th scope="row">Contact</th>
