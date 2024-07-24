@@ -113,9 +113,9 @@ const {organizations} = storeToRefs(useOrganizationsStore())
         <h2>About me</h2>
 
         <p>
-          I'm attending from Madrid, Spain, where I moved with my family
-          in July 2023 with the intention of spending a year before returning
-          to our home in Northern California.
+          I'm attending from Albany, California, a small town in the
+          San Francisco Bay Area that used to be the northwest corner
+          of Berkeley.
         </p>
 
         <p>
