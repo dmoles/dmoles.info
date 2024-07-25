@@ -89,6 +89,10 @@ export const useCoursesStore = defineStore('courses', () => {
           // new Course(503, 'ePortfolio Capstone'),
           new Course(534, 'Records Management'),
           new Course(599, 'Special Topics: Digital Preservation')
+        ],
+        'Fall': [
+          new Course(540, 'Reference Sources and Services'),
+          new Course(571, 'Transformative Library Leadership')
         ]
       }
     }
