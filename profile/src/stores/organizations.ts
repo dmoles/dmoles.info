@@ -14,7 +14,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
         abbr: 'SCARLA',
         name: 'The Student College, Academic, and Research Libraries Association',
         link: 'https://scarla.rutgers.edu/',
-        role: 'webmaster'
+        role: 'webmaster and acting president'
       },
       // {
       //     abbr: 'SOURCE',

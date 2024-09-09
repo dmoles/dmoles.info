@@ -29,5 +29,6 @@
     "vite": "^5.0.12",
     "vitest": "^0.26.2",
     "vue-tsc": "^0.40.4"
-  }
+  },
+  "packageManager": "yarn@3.3.0+sha256.bbfc6cc3362afbcb0ce39ee8f36fb2b62ce9834b20d6aeee5c1f481269b52238"
 }
